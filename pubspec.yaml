@@ -1,0 +1,8 @@
+name: optional
+version: 1.0.0
+description: An implementation of the Optional type
+homepage: https://github.com/tonio-ramirez/optional.dart
+author: Juan Antonio Ramirez <tonior@gmail.com>
+dev_dependencies:
+  unittest: '>=0.11.0 <0.12.0'
+  mock: '>=0.11.0 <0.12.0'
