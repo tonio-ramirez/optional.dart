@@ -13,6 +13,8 @@ class MockConsumer<T> extends Mock implements ConsumerClass<T> {
   MockConsumer() {
     when(callsTo('call')).alwaysReturn(null);
   }
+
+  void call(T value) => super.call(value);
 }
 
 void main() {
@@ -104,12 +106,12 @@ void main() {
   group('ifPresent', () {
     test("calls consumer when present", () {
       MockConsumer<int> consume = new MockConsumer<int>();
-      expect(() => new Optional.of(1).ifPresent(consume), returnsNormally);
+      expect(() => new Optional.of(1).ifPresent(consume.call), returnsNormally);
       consume.getLogs(callsTo('call')).verify(happenedOnce);
     });
     test("does not call consumer when empty", () {
       MockConsumer<int> consume = new MockConsumer<int>();
-      expect(() => new Optional.empty().ifPresent(consume), returnsNormally);
+      expect(() => new Optional.empty().ifPresent(consume.call), returnsNormally);
       consume.getLogs(callsTo('call')).verify(neverHappened);
     });
   });
