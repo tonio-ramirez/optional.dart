@@ -7,7 +7,7 @@ part of optional;
  */
 class Optional<T> {
 
-  T _value;
+  final T _value;
 
   /**
    * The value associated with this Optional, if any.
@@ -29,20 +29,19 @@ class Optional<T> {
    *
    * Throws [NoValuePresentError] if value is null.
    */
-  Optional.of(T value) {
+  Optional.of(T value) : _value = value {
     if (value == null) {
       throw new NoValuePresentError();
     }
-    _value = value;
   }
 
   /**
    * Creates a new Optional with the given value, if non-null.  Otherwise, returns an empty Optional.
    */
-  Optional.ofNullable(this._value);
+  const Optional.ofNullable(T value) : _value = value;
 
   /// Creates an empty Optional.
-  Optional.empty() : this.ofNullable(null);
+  const Optional.empty() : this.ofNullable(null);
 
   /// Returns an Optional with this Optional's value, if there is a value present and it matches the predicate.  Otherwise, returns an empty Optional.
   Optional<T> filter(bool predicate(T val)) {
