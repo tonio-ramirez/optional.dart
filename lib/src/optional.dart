@@ -87,5 +87,50 @@ class Optional<T> {
 
   bool operator ==(other) => other is Optional<T> && (other as Optional<T>)._value == _value;
 
+  Optional<T> operator+(Optional<T> other) {
+    return _internalMap(other, (val) => val + other.value);
+  }
+
+  Optional<T> operator-(Optional<T> other) {
+    return _internalMap(other, (val) => val - other.value);
+  }
+
+  Optional<T> operator*(Optional<T> other) {
+    return _internalMap(other, (val) => val * other.value);
+  }
+
+  Optional<T> operator/(Optional<T> other) {
+    return _internalMap(other, (val) => val / other.value);
+  }
+
+  Optional<T> operator~/(Optional<T> other) {
+    return _internalMap(other, (val) => val ~/ other.value);
+  }
+
+  Optional<T> operator^(Optional<T> other) {
+    return _internalMap(other, (val) => val ^ other.value);
+  }
+
+  Optional<T> operator&(Optional<T> other) {
+    return _internalMap(other, (val) => val & other.value);
+  }
+
+  Optional<T> operator%(Optional<T> other) {
+    return _internalMap(other, (val) => val % other.value);
+  }
+
+  Optional<T> operator>>(Optional<T> other) {
+    return _internalMap(other, (val) => val >> other.value);
+  }
+
+  Optional<T> operator<<(Optional<T> other) {
+    return _internalMap(other, (val) => val << other.value);
+  }
+
+  Optional<T> operator-() => isPresent ? new Optional.of(-value) : EMPTY;
+  Optional<T> operator~() => isPresent ? new Optional.of(~value) : EMPTY;
+
+  _internalMap(Optional<T> other, operation(val)) => isPresent && other.isPresent ? map(operation) : EMPTY;
+
   toString() => isPresent ? "Optional[value: ${_value}]" : "Optional[empty]";
 }
