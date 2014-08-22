@@ -27,11 +27,11 @@ class Optional<T> {
   /**
    * Creates a new Optional with the given non-null value.
    *
-   * Throws [NoValuePresentError] if value is null.
+   * Throws [ArgumentError] if value is null.
    */
   Optional.of(T value) : _value = value {
-    if (value == null) {
-      throw new NoValuePresentError();
+    if(value == null) {
+      throw new ArgumentError("value must be non-null");
     }
   }
 

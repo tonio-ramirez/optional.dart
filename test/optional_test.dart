@@ -24,7 +24,7 @@ void main() {
       expect(() => new Optional.of(1), returnsNormally);
     });
     test("of(null) throws", () {
-      expect(() => new Optional.of(null), throwsNoSuchElementError);
+      expect(() => new Optional.of(null), throwsArgumentError);
     });
     test("ofNullable() never throws", () {
       expect(() => new Optional.ofNullable(null), returnsNormally);
