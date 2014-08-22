@@ -6,6 +6,8 @@ part of optional;
  * Offers several methods which depend on the presence or absence of a contained value.
  */
 class Optional<T> {
+  /// An empty Optional.
+  static const EMPTY = const Optional.empty();
 
   final T _value;
 
@@ -46,13 +48,13 @@ class Optional<T> {
   /// Returns an Optional with this Optional's value, if there is a value present and it matches the predicate.  Otherwise, returns an empty Optional.
   Optional<T> filter(bool predicate(T val)) {
     if (isPresent && predicate(_value)) return new Optional<T>.of(_value);
-    else return new Optional<T>.empty();
+    else return EMPTY;
   }
 
   /// Returns an Optional provided by applying the mapper to this Optional's value, if present.  Otherwise, returns an empty Optional.
   Optional<dynamic> flatMap(Optional<dynamic> mapper(T val)) {
     if (isPresent) return mapper(_value);
-    else return new Optional.empty();
+    else return EMPTY;
   }
 
   /**
@@ -62,7 +64,7 @@ class Optional<T> {
    */
   Optional<dynamic> map(dynamic mapper(T val)) {
     if (isPresent) return new Optional<dynamic>.ofNullable(mapper(_value));
-    else return new Optional<dynamic>.empty();
+    else return EMPTY;
   }
 
   /// Returns this Optional's value, if present.  Otherwise, returns other.
