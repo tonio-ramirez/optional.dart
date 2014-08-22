@@ -2,18 +2,9 @@ import 'package:optional/optional.dart';
 import 'package:unittest/unittest.dart';
 import 'package:mock/mock.dart';
 
-const noSuchElementError = const isInstanceOf<NoValuePresentError>('NoSuchElementError');
-Matcher throwsNoSuchElementError = throwsA(noSuchElementError);
+final Matcher throwsNoSuchElementError = throwsA(const isInstanceOf<NoValuePresentError>('NoValuePresentError'));
 
-abstract class ConsumerClass<T> {
-  void call(T value);
-}
-
-class MockConsumer<T> extends Mock implements ConsumerClass<T> {
-  MockConsumer() {
-    when(callsTo('call')).alwaysReturn(null);
-  }
-
+class MockConsumer<T> extends Mock {
   void call(T value) => super.call(value);
 }
 
@@ -104,15 +95,15 @@ void main() {
   });
   groupSep=' ';
   group('ifPresent', () {
+    final MockConsumer<int> consumer = new MockConsumer<int>();
+    tearDown(() => consumer.clearLogs());
     test("calls consumer when present", () {
-      MockConsumer<int> consume = new MockConsumer<int>();
-      expect(() => new Optional.of(1).ifPresent(consume.call), returnsNormally);
-      consume.getLogs(callsTo('call')).verify(happenedOnce);
+      expect(() => new Optional.of(1).ifPresent(consumer.call), returnsNormally);
+      consumer.getLogs(callsTo('call')).verify(happenedOnce);
     });
     test("does not call consumer when empty", () {
-      MockConsumer<int> consume = new MockConsumer<int>();
-      expect(() => new Optional.empty().ifPresent(consume.call), returnsNormally);
-      consume.getLogs(callsTo('call')).verify(neverHappened);
+      expect(() => new Optional.empty().ifPresent(consumer.call), returnsNormally);
+      consumer.getLogs(callsTo('call')).verify(neverHappened);
     });
   });
   group('hashCode', () {
