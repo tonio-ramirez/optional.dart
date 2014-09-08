@@ -1,11 +1,8 @@
-import 'package:optional/optional.dart';
-import 'package:unittest/unittest.dart';
+part of optional_test;
 
-const EMPTY = Optional.EMPTY;
-Matcher isEmptyOptional = equals(EMPTY);
+final Matcher isEmptyOptional = equals(EMPTY);
 
-void main() {
-  groupSep = ': ';
+void runOperatorTests() {
   group("operator+", () {
     test("empty + 1 = empty", () {
       expect(EMPTY + new Optional.of(1), isEmptyOptional);
