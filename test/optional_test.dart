@@ -4,8 +4,8 @@ import 'package:optional/optional.dart';
 import 'package:unittest/unittest.dart';
 import 'package:mock/mock.dart';
 
-part 'src/operator_tests.dart';
-part 'src/method_tests.dart';
+part 'src/operators.dart';
+part 'src/methods.dart';
 
 main() {
   groupSep = ': ';
