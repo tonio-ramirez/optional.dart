@@ -1,9 +1,9 @@
 # Changelog
 
 ### 1.2.1
-  * Absent and Present are now subclasses of Optional.  You should continue to use constructors in Optional, and not
-    the Absent or Present ones.
-  * EMPTY is now a top-level constant.
+  * `Absent` and `Present` are now subclasses of `Optional`.  You should continue to use constructors in `Optional`, and not
+    the `Absent` or `Present` ones.
+  * `EMPTY` is now a top-level constant.
 
 ### 1.2.0
   * Operators are now overloaded, so you can add, subtract, etc., Optionals.  Any operation involving an empty Optional
