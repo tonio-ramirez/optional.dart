@@ -11,6 +11,6 @@ main() {
   print(six == anotherSix); // prints "true"
   var negOne = -one;
   print(negOne.value); // prints "-1"
-  var empty = one + Optional.EMPTY;
+  var empty = one + EMPTY;
   print(empty.isPresent); // prints "false"
 }

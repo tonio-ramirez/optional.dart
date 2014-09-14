@@ -2,7 +2,7 @@ import 'package:optional/optional.dart';
 
 main() {
   try {
-    print(Optional.EMPTY.value);
+    print(EMPTY.value);
   } on NoValuePresentError catch(e) {
     print(e); // prints "Bad state: no value present"
   }
@@ -16,7 +16,7 @@ main() {
   var empty = new Optional.ofNullable(null);
   print(empty.isPresent); // prints "false"
   var anotherEmpty = new Optional.empty();
-  var yetAnotherEmpty = Optional.EMPTY;
+  var yetAnotherEmpty = EMPTY;
   print(empty == anotherEmpty); // prints "true"
   print(empty == yetAnotherEmpty); // prints "true"
   print(anotherEmpty == yetAnotherEmpty); // prints "true"
