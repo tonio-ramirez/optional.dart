@@ -3,6 +3,8 @@ part of optional_internal;
 class Absent<T> implements Optional<T> {
   const Absent();
 
+  const Absent._internal();
+
   T get value => throw new NoValuePresentError();
 
   bool get isPresent => false;

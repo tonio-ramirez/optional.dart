@@ -47,7 +47,7 @@ abstract class Optional<T> {
   }
 
   /// Creates an empty Optional.
-  factory Optional.empty() => new Absent<T>();
+  const factory Optional.empty() = Absent<T>._internal;
 
   /// Returns an Optional with this Optional's value, if there is a value present and it matches the predicate.  Otherwise, returns an empty Optional.
   Optional<T> filter(bool predicate(T val));
