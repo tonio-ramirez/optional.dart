@@ -1,5 +1,8 @@
 # Changelog
 
+### 1.2.2
+  * `Optional.empty()` constructor is now `const`.
+
 ### 1.2.1
   * `Absent` and `Present` are now subclasses of `Optional`.  You should continue to use constructors in `Optional`, and not
     the `Absent` or `Present` ones.
