@@ -1,6 +1,6 @@
 part of optional_test;
 
-final Matcher throwsNoSuchElementError = throwsA(const isInstanceOf<NoValuePresentError>('NoValuePresentError'));
+final Matcher throwsNoSuchElementError = throwsA(const isInstanceOf<NoValuePresentError>());
 
 class MockConsumer<T> extends Mock {
   void call(T value) => super.call(value);
