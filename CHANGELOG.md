@@ -1,5 +1,8 @@
 # Changelog
 
+### 1.2.3
+  * Add an optional `orElse` parameter to `ifPresent`.
+
 ### 1.2.2
   * `Optional.empty()` constructor is now `const`.
 
