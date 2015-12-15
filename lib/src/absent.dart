@@ -21,7 +21,7 @@ class Absent<T> implements Optional<T> {
 
   T orElseThrow(dynamic supplyError()) => throw supplyError();
 
-  void ifPresent(void consume(T val)) => null;
+  void ifPresent(void consume(T val), {void orElse()}) => orElse == null ? null : orElse();
 
   int get hashCode => 0;
 

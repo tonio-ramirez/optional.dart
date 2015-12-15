@@ -6,6 +6,10 @@ class MockConsumer<T> extends Mock {
   void call(T value) => super.call(value);
 }
 
+class MockMethod extends Mock {
+  void call() => super.call();
+}
+
 void runMethodTests() {
   group("constructor", () {
     test("new Optional.of(<non-null>) returns normally", () {
@@ -89,14 +93,23 @@ void runMethodTests() {
   });
   group('ifPresent', () {
     final MockConsumer<int> consumer = new MockConsumer<int>();
+    final MockMethod orElse = new MockMethod();
     tearDown(() => consumer.clearLogs());
     test("calls consumer when present", () {
       expect(() => new Optional.of(1).ifPresent(consumer.call), returnsNormally);
       consumer.getLogs(callsTo('call')).verify(happenedOnce);
     });
+    test("does not call orElse when present", () {
+      expect(() => new Optional.of(1).ifPresent(consumer.call, orElse: orElse.call), returnsNormally);
+      orElse.getLogs(callsTo('call')).verify(neverHappened);
+    });
     test("does not call consumer when empty", () {
       expect(() => new Optional.empty().ifPresent(consumer.call), returnsNormally);
       consumer.getLogs(callsTo('call')).verify(neverHappened);
+    });
+    test("calls orElse when empty", () {
+      expect(() => new Optional.empty().ifPresent(consumer.call, orElse: orElse.call), returnsNormally);
+      orElse.getLogs(callsTo('call')).verify(happenedOnce);
     });
   });
   group('hashCode', () {

@@ -24,7 +24,7 @@ class Present<T> implements Optional<T> {
 
   T orElseThrow(dynamic supplyError()) => _value;
 
-  void ifPresent(void consume(T val)) => Function.apply(consume, [_value]);
+  void ifPresent(void consume(T val), {void orElse()}) => Function.apply(consume, [_value]);
 
   int get hashCode => _value.hashCode;
 
