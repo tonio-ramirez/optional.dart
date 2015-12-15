@@ -71,7 +71,7 @@ abstract class Optional<T> {
   /// Returns this Optional's value, if present.  Otherwise, throws the result of calling supplyError().
   T orElseThrow(dynamic supplyError());
 
-  /// Invokes consume() with this Optional's value, if present.  Otherwise, does nothing.
+  /// Invokes consume() with this Optional's value, if present.  Otherwise, if orElse is passed, invokes it, otherwise does nothing.
   void ifPresent(void consume(T val), {void orElse()});
 
   /// The hashCode of this Optional's value, if present.  Otherwise, 0.
