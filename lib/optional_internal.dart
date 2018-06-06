@@ -4,7 +4,8 @@ part 'src/absent.dart';
 part 'src/present.dart';
 part 'src/novaluepresent.dart';
 
-const Optional<dynamic> EMPTY = const Absent<dynamic>();
+/// A constant, absent Optional.
+const Optional<dynamic> empty = const _Absent<dynamic>();
 
 /**
  * A container object which may contain a non-null value.
@@ -12,16 +13,6 @@ const Optional<dynamic> EMPTY = const Absent<dynamic>();
  * Offers several methods which depend on the presence or absence of a contained value.
  */
 abstract class Optional<T> {
-  /**
-   * The value associated with this Optional, if any.
-   *
-   * Throws [NoValuePresentError] if no value is present.
-   */
-  T get value;
-
-  /// Whether the Optional has a value.
-  bool get isPresent;
-
   /**
    * Creates a new Optional with the given non-null value.
    *
@@ -31,7 +22,7 @@ abstract class Optional<T> {
     if(value == null) {
       throw new ArgumentError("value must be non-null");
     } else {
-      return new Present<T>(value);
+      return new _Present<T>(value);
     }
   }
 
@@ -40,14 +31,24 @@ abstract class Optional<T> {
    */
   factory Optional.ofNullable(T value) {
     if(value == null) {
-      return new Absent<T>();
+      return empty;
     } else {
-      return new Present<T>(value);
+      return new _Present<T>(value);
     }
   }
 
   /// Creates an empty Optional.
-  const factory Optional.empty() = Absent<T>._internal;
+  const factory Optional.empty() = _Absent<T>._internal;
+
+  /**
+   * The value associated with this Optional, if any.
+   *
+   * Throws [NoValuePresentError] if no value is present.
+   */
+  T get value;
+
+  /// Whether the Optional has a value.
+  bool get isPresent;
 
   /// Returns an Optional with this Optional's value, if there is a value present and it matches the predicate.  Otherwise, returns an empty Optional.
   Optional<T> filter(bool predicate(T val));
@@ -75,30 +76,45 @@ abstract class Optional<T> {
   void ifPresent(void consume(T val), {void orElse()});
 
   /// The hashCode of this Optional's value, if present.  Otherwise, 0.
+  @override
   int get hashCode;
 
-  bool operator ==(other);
+  @override
+  bool operator ==(Object other);
 
+  /// Returns an Optional with a value equal to applying the + operator to the values of both Optional operands, if both are present.  Otherwise, returns an empty Optional.
   Optional<T> operator+(Optional<T> other);
 
+  /// Returns an Optional with a value equal to applying the - operator to the values of both Optional operands, if both are present.  Otherwise, returns an empty Optional.
   Optional<T> operator-(Optional<T> other);
 
+  /// Returns an Optional with a value equal to applying the * operator to the values of both Optional operands, if both are present.  Otherwise, returns an empty Optional.
   Optional<T> operator*(Optional<T> other);
 
+  /// Returns an Optional with a value equal to applying the / operator to the values of both Optional operands, if both are present.  Otherwise, returns an empty Optional.
   Optional<T> operator/(Optional<T> other);
 
+  /// Returns an Optional with a value equal to applying the ~/ operator to the values of both Optional operands, if both are present.  Otherwise, returns an empty Optional.
   Optional<T> operator~/(Optional<T> other);
 
+  /// Returns an Optional with a value equal to applying the ^ operator to the values of both Optional operands, if both are present.  Otherwise, returns an empty Optional.
   Optional<T> operator^(Optional<T> other);
 
+  /// Returns an Optional with a value equal to applying the & operator to the values of both Optional operands, if both are present.  Otherwise, returns an empty Optional.
   Optional<T> operator&(Optional<T> other);
 
+  /// Returns an Optional with a value equal to applying the % operator to the values of both Optional operands, if both are present.  Otherwise, returns an empty Optional.
   Optional<T> operator%(Optional<T> other);
 
+  /// Returns an Optional with a value equal to applying the >> operator to the values of both Optional operands, if both are present.  Otherwise, returns an empty Optional.
   Optional<T> operator>>(Optional<T> other);
 
+  /// Returns an Optional with a value equal to applying the << operator to the values of both Optional operands, if both are present.  Otherwise, returns an empty Optional.
   Optional<T> operator<<(Optional<T> other);
 
+  /// Returns an Optional with a value equal to applying the unary- operator to the value of this Optional, if present.  Otherwise, returns an empty Optional.
   Optional<T> operator-();
+
+  /// Returns an Optional with a value equal to applying the unary~ operator to the value of this Optional, if present.  Otherwise, returns an empty Optional.
   Optional<T> operator~();
 }
