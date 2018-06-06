@@ -1,5 +1,5 @@
 name: optional
-version: 2.0.1
+version: 2.0.1+1
 author: Juan Antonio Ramirez <tonior@gmail.com>
 description: An implementation of the Optional type
 homepage: https://github.com/tonio-ramirez/optional.dart
