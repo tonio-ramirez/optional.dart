@@ -1,8 +1,8 @@
 import 'package:optional/optional.dart';
 
-main() {
+void main() {
   try {
-    print(EMPTY.value);
+    print(empty.value);
   } on NoValuePresentError catch(e) {
     print(e); // prints "Bad state: no value present"
   }
@@ -13,11 +13,11 @@ main() {
     print(e); // prints "Illegal argument(s): value must be non-null"
   }
 
-  var empty = new Optional.ofNullable(null);
-  print(empty.isPresent); // prints "false"
-  var anotherEmpty = new Optional.empty();
-  var yetAnotherEmpty = EMPTY;
-  print(empty == anotherEmpty); // prints "true"
-  print(empty == yetAnotherEmpty); // prints "true"
+  final anEmpty = new Optional.ofNullable(null);
+  print(anEmpty.isPresent); // prints "false"
+  final anotherEmpty = const Optional.empty();
+  final yetAnotherEmpty = empty;
+  print(anEmpty == anotherEmpty); // prints "true"
+  print(anEmpty == yetAnotherEmpty); // prints "true"
   print(anotherEmpty == yetAnotherEmpty); // prints "true"
 }

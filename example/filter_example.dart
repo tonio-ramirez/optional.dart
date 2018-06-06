@@ -1,13 +1,12 @@
 import 'package:optional/optional.dart';
 
-main() {
-  var hello = new Optional.of("hello");
-  var world = new Optional.of("world");
-  var name = new Optional.of("harry");
+void main() {
+  final hello = new Optional.of("hello");
+  final world = new Optional.of("world");
+  final name = new Optional.of("harry");
 
-  var opts = [hello, world, name];
-  opts.forEach((o) {
-    var filtered = o.filter((v) => v.startsWith('h'));
+  for(var o in [hello, world, name]) {
+    final filtered = o.filter((v) => v.startsWith('h'));
     print(filtered.isPresent);
-  }); // prints "true", "false", "true"
+  } // prints "true", "false", "true"
 }

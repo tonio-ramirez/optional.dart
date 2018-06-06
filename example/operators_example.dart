@@ -1,16 +1,16 @@
 import 'package:optional/optional.dart';
 
-main() {
-  var one = new Optional.of(1);
-  var two = new Optional.of(2);
-  var three = one + two;
+void main() {
+  final one = new Optional.of(1);
+  final two = new Optional.of(2);
+  final three = one + two;
   print(three.value); // prints "3"
-  var six = three * two;
+  final six = three * two;
   print(six.value); // prints "6"
-  var anotherSix = two * three;
+  final anotherSix = two * three;
   print(six == anotherSix); // prints "true"
-  var negOne = -one;
+  final negOne = -one;
   print(negOne.value); // prints "-1"
-  var empty = one + EMPTY;
-  print(empty.isPresent); // prints "false"
+  final anEmpty = one + empty;
+  print(anEmpty.isPresent); // prints "false"
 }
