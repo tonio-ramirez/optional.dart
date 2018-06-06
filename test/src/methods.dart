@@ -2,12 +2,18 @@ part of optional_test;
 
 final Matcher throwsNoSuchElementError = throwsA(const isInstanceOf<NoValuePresentError>());
 
-class MockConsumer<T> extends Mock {
-  void call(T value) => super.call(value);
+class Consumer<T> {
+  void call(T value) {}
 }
 
-class MockMethod extends Mock {
-  void call() => super.call();
+class Method {
+  void call() {}
+}
+
+class MockConsumer<T> extends Mock implements Consumer<T> {
+}
+
+class MockMethod extends Mock implements Method {
 }
 
 void runMethodTests() {
@@ -92,24 +98,32 @@ void runMethodTests() {
     });
   });
   group('ifPresent', () {
-    final MockConsumer<int> consumer = new MockConsumer<int>();
-    final MockMethod orElse = new MockMethod();
-    tearDown(() => consumer.clearLogs());
+    final consumer = new MockConsumer<int>();
+    final orElse = new MockMethod();
+
+    final callConsumer = (i) => consumer.call(i);
+    final callOrElse = () => orElse.call();
+
+    tearDown(() {
+      clearInteractions(consumer);
+      clearInteractions(orElse);
+    });
+
     test("calls consumer when present", () {
-      expect(() => new Optional.of(1).ifPresent(consumer.call), returnsNormally);
-      consumer.getLogs(callsTo('call')).verify(happenedOnce);
+      expect(() => new Optional.of(1).ifPresent(callConsumer), returnsNormally);
+      verify(consumer.call(1)).called(1);
     });
     test("does not call orElse when present", () {
-      expect(() => new Optional.of(1).ifPresent(consumer.call, orElse: orElse.call), returnsNormally);
-      orElse.getLogs(callsTo('call')).verify(neverHappened);
+      expect(() => new Optional.of(1).ifPresent(callConsumer, orElse: callOrElse), returnsNormally);
+      verifyNever(orElse.call());
     });
     test("does not call consumer when empty", () {
-      expect(() => new Optional.empty().ifPresent(consumer.call), returnsNormally);
-      consumer.getLogs(callsTo('call')).verify(neverHappened);
+      expect(() => new Optional.empty().ifPresent(callConsumer), returnsNormally);
+      verifyNever(consumer.call(any));
     });
     test("calls orElse when empty", () {
-      expect(() => new Optional.empty().ifPresent(consumer.call, orElse: orElse.call), returnsNormally);
-      orElse.getLogs(callsTo('call')).verify(happenedOnce);
+      expect(() => new Optional.empty().ifPresent(callConsumer, orElse: callOrElse), returnsNormally);
+      verify(orElse.call()).called(1);
     });
   });
   group('hashCode', () {

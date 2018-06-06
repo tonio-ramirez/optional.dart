@@ -4,7 +4,7 @@ part 'src/absent.dart';
 part 'src/present.dart';
 part 'src/novaluepresent.dart';
 
-const EMPTY = const Absent();
+const Optional<dynamic> EMPTY = const Absent<dynamic>();
 
 /**
  * A container object which may contain a non-null value.

@@ -28,7 +28,7 @@ class Present<T> implements Optional<T> {
 
   int get hashCode => _value.hashCode;
 
-  bool operator ==(other) => other is Present<T> && (other as Present<T>)._value == _value;
+  bool operator ==(other) => other is Present<T> && other._value == _value;
 
   Optional<T> operator+(Optional<T> other) {
     return _internalMap(other, (val) => val + other.value);
@@ -70,8 +70,8 @@ class Present<T> implements Optional<T> {
     return _internalMap(other, (val) => val << other.value);
   }
 
-  Optional<T> operator-() => new Present<T>(-value);
-  Optional<T> operator~() => new Present<T>(~value);
+  Optional<T> operator-() => _internalMap(this, (val) => -val);
+  Optional<T> operator~() => _internalMap(this, (val) => ~val);
 
   _internalMap(Optional<T> other, operation(val)) => other.isPresent ? map(operation) : EMPTY;
 

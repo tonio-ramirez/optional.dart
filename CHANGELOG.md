@@ -1,5 +1,8 @@
 # Changelog
 
+### 2.0.0
+  * Compatibility with Dart 2
+
 ### 1.2.3
   * Add an optional `orElse` parameter to `ifPresent`.
 
