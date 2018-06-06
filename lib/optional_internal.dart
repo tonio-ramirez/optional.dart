@@ -11,7 +11,7 @@ const EMPTY = const Absent();
  *
  * Offers several methods which depend on the presence or absence of a contained value.
  */
-abstract class Optional<T> {
+abstract class Optional<T>{
   /**
    * The value associated with this Optional, if any.
    *
@@ -53,14 +53,14 @@ abstract class Optional<T> {
   Optional<T> filter(bool predicate(T val));
 
   /// Returns an Optional provided by applying the mapper to this Optional's value, if present.  Otherwise, returns an empty Optional.
-  Optional<dynamic> flatMap(Optional<dynamic> mapper(T val));
+  Optional<T> flatMap(Optional<T> mapper(T val));
 
   /**
    * Returns an Optional containing the result of applying the mapper to this Optional's value, if present.  Otherwise, returns an empty Optional.
    *
    * If the mapper returns a null value, returns an empty Optional.
    */
-  Optional<dynamic> map(dynamic mapper(T val));
+  Optional<T> map(dynamic mapper(T val));
 
   /// Returns this Optional's value, if present.  Otherwise, returns other.
   T orElse(T other);
@@ -99,6 +99,6 @@ abstract class Optional<T> {
 
   Optional<T> operator<<(Optional<T> other);
 
-  Optional<T> operator-();
-  Optional<T> operator~();
+//  Optional<T> operator-();
+//  Optional<T> operator~();
 }
