@@ -3,6 +3,11 @@ version: 1.2.3+1
 author: Juan Antonio Ramirez <tonior@gmail.com>
 description: An implementation of the Optional type
 homepage: https://github.com/tonio-ramirez/optional.dart
+
 dev_dependencies:
-  mock: '>=0.12.0 <0.13.0'
-  unittest: '>=0.12.0 <0.13.0'
+  test: any
+
+  build_runner: ^0.8.0
+  build_test: ^0.10.0
+  build_web_compilers: ^0.4.0
+

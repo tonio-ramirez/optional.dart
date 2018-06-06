@@ -9,8 +9,8 @@ main() {
   print(six.value); // prints "6"
   var anotherSix = two * three;
   print(six == anotherSix); // prints "true"
-  var negOne = -one;
-  print(negOne.value); // prints "-1"
-  var empty = one + EMPTY;
-  print(empty.isPresent); // prints "false"
+//  var negOne = -one;
+//  print(negOne.value); // prints "-1"
+//  var empty = one + EMPTY;
+//  print(empty.isPresent); // prints "false"
 }
