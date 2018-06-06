@@ -20,7 +20,7 @@ abstract class Optional<T> {
    */
   factory Optional.of(T value) {
     if(value == null) {
-      throw new ArgumentError("value must be non-null");
+      throw new ArgumentError('value must be non-null');
     } else {
       return new _Present<T>(value);
     }

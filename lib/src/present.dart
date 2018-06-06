@@ -82,5 +82,5 @@ class _Present<T> implements Optional<T> {
   _internalMap(Optional<T> other, operation(val)) => other.isPresent ? map(operation) : empty;
 
   @override
-  String toString() => "Optional[value: $_value]";
+  String toString() => 'Optional[value: $_value]';
 }

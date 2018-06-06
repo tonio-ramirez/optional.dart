@@ -75,5 +75,5 @@ class _Absent<T> implements Optional<T> {
   Optional<T> operator~() => this;
 
   @override
-  String toString() => "Optional[empty]";
+  String toString() => 'Optional[empty]';
 }

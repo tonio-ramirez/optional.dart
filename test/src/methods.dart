@@ -25,84 +25,84 @@ class MockMethod extends Mock implements Method {
 
 // ignore: public_member_api_docs
 void runMethodTests() {
-  group("constructor", () {
-    test("new Optional.of(<non-null>) returns normally", () {
+  group('constructor', () {
+    test('new Optional.of(<non-null>) returns normally', () {
       expect(() => new Optional.of(1), returnsNormally);
     });
-    test("new Optional.of(null) throws", () {
+    test('new Optional.of(null) throws', () {
       expect(() => new Optional.of(null), throwsArgumentError);
     });
-    test("new Optional.ofNullable() never throws", () {
+    test('new Optional.ofNullable() never throws', () {
       expect(() => new Optional.ofNullable(null), returnsNormally);
       expect(() => new Optional.ofNullable(1), returnsNormally);
     });
-    test("new Optional.empty() doesn't throw", () {
+    test('new Optional.empty() does not throw', () {
       expect(() => const Optional.empty(), returnsNormally);
     });
   });
-  group("isPresent", () {
-    test("when empty is false", () {
+  group('isPresent', () {
+    test('when empty is false', () {
       expect(const Optional.empty().isPresent, isFalse);
     });
-    test("when ofNullable(null) is false", () {
+    test('when ofNullable(null) is false', () {
       expect(new Optional.ofNullable(null).isPresent, isFalse);
     });
-    test("when ofNullable(<non-null>) is true", () {
+    test('when ofNullable(<non-null>) is true', () {
       expect(new Optional.ofNullable(1).isPresent, isTrue);
     });
-    test("when of(value) is true", () {
+    test('when of(value) is true', () {
       expect(new Optional.of(1).isPresent, isTrue);
     });
   });
-  group("value", () {
-    test("when empty throws", () {
+  group('value', () {
+    test('when empty throws', () {
       expect(() => const Optional.empty().value, throwsNoSuchElementError);
     });
-    test("when isPresent returns value", () {
+    test('when isPresent returns value', () {
       expect(new Optional.of(1).value, equals(1));
     });
   });
-  group("filter", () {
-    test("returns empty when non-match", () {
+  group('filter', () {
+    test('returns empty when non-match', () {
       expect(new Optional.of(1).filter((n) => n != 1).isPresent, isFalse);
     });
-    test("returns Optional with same value when match", () {
+    test('returns Optional with same value when match', () {
       expect(new Optional.of(1).filter((n) => n == 1).isPresent, isTrue);
       expect(new Optional.of(1).filter((n) => n == 1).value, equals(1));
     });
   });
-  group("maps", () {
-    test("flat map when present returns result of map operation", () {
+  group('maps', () {
+    test('flat map when present returns result of map operation', () {
       expect(new Optional.of(1).flatMap((n) => new Optional.of(n+1)), equals(new Optional.of(2)));
     });
-    test("flat map when empty returns empty", () {
+    test('flat map when empty returns empty', () {
       expect(const Optional.empty().flatMap((n) => new Optional.of(n+1)), equals(const Optional.empty()));
     });
-    test("map when present returns new Optional of result of map operation", () {
+    test('map when present returns new Optional of result of map operation', () {
       expect(new Optional.of(1).map((n) => n+1), equals(new Optional.of(2)));
     });
-    test("map when empty returns empty", () {
+    test('map when empty returns empty', () {
       expect(const Optional.empty().map((n) => n+1), equals(const Optional.empty()));
     });
   });
-  group("or", () {
-    test("orElse(val) returns val when empty", () {
+  group('or', () {
+    test('orElse(val) returns val when empty', () {
       expect(const Optional.empty().orElse(2), equals(2));
     });
-    test("orElse(val) returns value when present", () {
+    test('orElse(val) returns value when present', () {
       expect(new Optional.of(1).orElse(2), equals(1));
     });
-    test("orElseGet(f) returns f() when empty", () {
+    test('orElseGet(f) returns f() when empty', () {
       expect(const Optional.empty().orElseGet(() => 2), equals(2));
     });
-    test("orElseGet(f) returns value when present", () {
+    test('orElseGet(f) returns value when present', () {
       expect(new Optional.of(1).orElseGet(() => 2), equals(1));
     });
-    test("orElseThrow(f) throws f() when empty", () {
-      expect(() => const Optional.empty().orElseThrow(() => "exception"), throwsA("exception"));
+    test('orElseThrow(f) throws f() when empty', () {
+      expect(() => const Optional.empty().orElseThrow(() => 'exception'), throwsA('exception'));
     });
-    test("orElseThrow(f) returns value when present", () {
-      expect(new Optional.of(1).orElseThrow(() => "exception"), equals(1));
+    test('orElseThrow(f) returns value when present', () {
+      expect(new Optional.of(1).orElseThrow(() => 'exception'), equals(1));
     });
   });
   group('ifPresent', () {
@@ -118,20 +118,24 @@ void runMethodTests() {
       clearInteractions(orElse);
     });
 
-    test("calls consumer when present", () {
+    test('calls consumer when present', () {
       expect(() => new Optional.of(1).ifPresent(callConsumer), returnsNormally);
+      // ignore: use_of_void_result
       verify(consumer.call(1)).called(1);
     });
-    test("does not call orElse when present", () {
+    test('does not call orElse when present', () {
       expect(() => new Optional.of(1).ifPresent(callConsumer, orElse: callOrElse), returnsNormally);
+      // ignore: use_of_void_result
       verifyNever(orElse.call());
     });
-    test("does not call consumer when empty", () {
+    test('does not call consumer when empty', () {
       expect(() => const Optional.empty().ifPresent(callConsumer), returnsNormally);
+      // ignore: use_of_void_result
       verifyNever(consumer.call(any));
     });
-    test("calls orElse when empty", () {
+    test('calls orElse when empty', () {
       expect(() => const Optional.empty().ifPresent(callConsumer, orElse: callOrElse), returnsNormally);
+      // ignore: use_of_void_result
       verify(orElse.call()).called(1);
     });
   });

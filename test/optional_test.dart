@@ -9,6 +9,6 @@ part 'src/methods.dart';
 
 // ignore: type_annotate_public_apis
 main() {
-  group("Methods", runMethodTests);
-  group("Operators", runOperatorTests);
+  group('Methods', runMethodTests);
+  group('Operators', runOperatorTests);
 }
