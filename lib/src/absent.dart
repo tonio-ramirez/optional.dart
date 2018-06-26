@@ -12,13 +12,13 @@ class _Absent<T> implements Optional<T> {
   bool get isPresent => false;
 
   @override
-  Optional<T> filter(bool predicate(T val)) => this;
+  Optional<T> filter(bool predicate(T val)) => empty;
 
   @override
-  Optional<dynamic> flatMap(Optional<dynamic> mapper(T val)) => this;
+  Optional<R> flatMap<R>(Optional<R> mapper(T val)) => empty;
 
   @override
-  Optional<dynamic> map(dynamic mapper(T val)) => this;
+  Optional<R> map<R>(R mapper(T val)) => empty;
 
   @override
   T orElse(T other) => other;

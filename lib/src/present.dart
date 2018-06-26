@@ -20,10 +20,10 @@ class _Present<T> implements Optional<T> {
   }
 
   @override
-  Optional<dynamic> flatMap(Optional<dynamic> mapper(T val)) => mapper(_value);
+  Optional<R> flatMap<R>(Optional<R> mapper(T val)) => mapper(_value);
 
   @override
-  Optional<dynamic> map(dynamic mapper(T val)) => new Optional<dynamic>.ofNullable(mapper(_value));
+  Optional<R> map<R>(R mapper(T val)) => new Optional<R>.ofNullable(mapper(_value));
 
   @override
   T orElse(T other) => _value;
