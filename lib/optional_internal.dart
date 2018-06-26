@@ -54,14 +54,14 @@ abstract class Optional<T> {
   Optional<T> filter(bool predicate(T val));
 
   /// Returns an Optional provided by applying the mapper to this Optional's value, if present.  Otherwise, returns an empty Optional.
-  Optional<dynamic> flatMap(Optional<dynamic> mapper(T val));
+  Optional<R> flatMap<R>(Optional<R> mapper(T val));
 
   /**
    * Returns an Optional containing the result of applying the mapper to this Optional's value, if present.  Otherwise, returns an empty Optional.
    *
    * If the mapper returns a null value, returns an empty Optional.
    */
-  Optional<dynamic> map(dynamic mapper(T val));
+  Optional<R> map<R>(R mapper(T val));
 
   /// Returns this Optional's value, if present.  Otherwise, returns other.
   T orElse(T other);
