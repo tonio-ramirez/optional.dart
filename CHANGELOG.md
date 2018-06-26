@@ -1,5 +1,8 @@
 # Changelog
 
+### 2.0.2
+  * Better use of generic methods (no more `dynamic`).
+
 ### 2.0.0
   * Compatibility with Dart 2
 
