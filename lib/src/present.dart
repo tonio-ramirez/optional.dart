@@ -23,7 +23,8 @@ class _Present<T> implements Optional<T> {
   Optional<R> flatMap<R>(Optional<R> mapper(T val)) => mapper(_value);
 
   @override
-  Optional<R> map<R>(R mapper(T val)) => new Optional<R>.ofNullable(mapper(_value));
+  Optional<R> map<R>(R mapper(T val)) =>
+      new Optional<R>.ofNullable(mapper(_value));
 
   @override
   T orElse(T other) => _value;
@@ -35,7 +36,8 @@ class _Present<T> implements Optional<T> {
   T orElseThrow(dynamic supplyError()) => _value;
 
   @override
-  void ifPresent(void consume(T val), {void orElse()}) => Function.apply(consume, [_value]);
+  void ifPresent(void consume(T val), {void orElse()}) =>
+      Function.apply(consume, [_value]);
 
   @override
   int get hashCode => _value.hashCode;

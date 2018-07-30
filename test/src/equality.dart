@@ -18,7 +18,8 @@ void runEqualityTests() {
       expect(new Optional.of(1), isNot(const Optional.empty()));
     });
     test('two empty Optionals of different types are equal', () {
-      expect(const Optional<int>.empty(), equals(const Optional<String>.empty()));
+      expect(
+          const Optional<int>.empty(), equals(const Optional<String>.empty()));
     });
     test('two empty Optionals of same type are equal', () {
       expect(const Optional<int>.empty(), equals(const Optional<int>.empty()));

@@ -19,7 +19,7 @@ abstract class Optional<T> {
    * Throws [ArgumentError] if value is null.
    */
   factory Optional.of(T value) {
-    if(value == null) {
+    if (value == null) {
       throw new ArgumentError('value must be non-null');
     } else {
       return new _Present<T>(value);
@@ -30,7 +30,7 @@ abstract class Optional<T> {
    * Creates a new Optional with the given value, if non-null.  Otherwise, returns an empty Optional.
    */
   factory Optional.ofNullable(T value) {
-    if(value == null) {
+    if (value == null) {
       return empty.cast<T>();
     } else {
       return new _Present<T>(value);
@@ -85,5 +85,6 @@ abstract class Optional<T> {
   /// Returns a view of this Optional as an Optional with an [R] value
   Optional<R> cast<R>();
 
-  static Optional<R> _castFrom<R>(Optional<dynamic> optional) => optional.map((v) => v as R);
+  static Optional<R> _castFrom<R>(Optional<dynamic> optional) =>
+      optional.map((v) => v as R);
 }

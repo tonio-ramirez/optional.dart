@@ -1,6 +1,7 @@
 part of optional_test;
 
-final Matcher throwsNoSuchElementError = throwsA(const TypeMatcher<NoValuePresentError>());
+final Matcher throwsNoSuchElementError =
+    throwsA(const TypeMatcher<NoValuePresentError>());
 
 class Consumer<T> {
   void call(T value) {}
@@ -10,11 +11,9 @@ class Method {
   void call() {}
 }
 
-class MockConsumer<T> extends Mock implements Consumer<T> {
-}
+class MockConsumer<T> extends Mock implements Consumer<T> {}
 
-class MockMethod extends Mock implements Method {
-}
+class MockMethod extends Mock implements Method {}
 
 void runMethodTests() {
   group('constructor', () {
@@ -65,16 +64,20 @@ void runMethodTests() {
   });
   group('maps', () {
     test('flat map when present returns result of map operation', () {
-      expect(new Optional.of(1).flatMap((n) => new Optional.of(n+1)), equals(new Optional.of(2)));
+      expect(new Optional.of(1).flatMap((n) => new Optional.of(n + 1)),
+          equals(new Optional.of(2)));
     });
     test('flat map when empty returns empty', () {
-      expect(const Optional.empty().flatMap((n) => new Optional.of(n+1)), equals(const Optional.empty()));
+      expect(const Optional.empty().flatMap((n) => new Optional.of(n + 1)),
+          equals(const Optional.empty()));
     });
-    test('map when present returns new Optional of result of map operation', () {
-      expect(new Optional.of(1).map((n) => n+1), equals(new Optional.of(2)));
+    test('map when present returns new Optional of result of map operation',
+        () {
+      expect(new Optional.of(1).map((n) => n + 1), equals(new Optional.of(2)));
     });
     test('map when empty returns empty', () {
-      expect(const Optional.empty().map((n) => n+1), equals(const Optional.empty()));
+      expect(const Optional.empty().map((n) => n + 1),
+          equals(const Optional.empty()));
     });
   });
   group('or', () {
@@ -91,7 +94,8 @@ void runMethodTests() {
       expect(new Optional.of(1).orElseGet(() => 2), equals(1));
     });
     test('orElseThrow(f) throws f() when empty', () {
-      expect(() => const Optional.empty().orElseThrow(() => 'exception'), throwsA('exception'));
+      expect(() => const Optional.empty().orElseThrow(() => 'exception'),
+          throwsA('exception'));
     });
     test('orElseThrow(f) returns value when present', () {
       expect(new Optional.of(1).orElseThrow(() => 'exception'), equals(1));
@@ -114,15 +118,21 @@ void runMethodTests() {
       verify(consumer.call(1)).called(1);
     });
     test('does not call orElse when present', () {
-      expect(() => new Optional.of(1).ifPresent(callConsumer, orElse: callOrElse), returnsNormally);
+      expect(
+          () => new Optional.of(1).ifPresent(callConsumer, orElse: callOrElse),
+          returnsNormally);
       verifyNever(orElse.call());
     });
     test('does not call consumer when empty', () {
-      expect(() => const Optional.empty().ifPresent(callConsumer), returnsNormally);
+      expect(() => const Optional.empty().ifPresent(callConsumer),
+          returnsNormally);
       verifyNever(consumer.call(any));
     });
     test('calls orElse when empty', () {
-      expect(() => const Optional.empty().ifPresent(callConsumer, orElse: callOrElse), returnsNormally);
+      expect(
+          () => const Optional.empty()
+              .ifPresent(callConsumer, orElse: callOrElse),
+          returnsNormally);
       verify(orElse.call()).called(1);
     });
   });
@@ -135,5 +145,3 @@ void runMethodTests() {
     });
   });
 }
-
-
