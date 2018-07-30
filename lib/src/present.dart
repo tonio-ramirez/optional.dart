@@ -16,7 +16,7 @@ class _Present<T> implements Optional<T> {
     if (predicate(_value))
       return this;
     else
-      return empty;
+      return empty.cast<T>();
   }
 
   @override
@@ -41,46 +41,11 @@ class _Present<T> implements Optional<T> {
   int get hashCode => _value.hashCode;
 
   @override
-  bool operator ==(Object other) => other is _Present<T> && other._value == _value;
-
-  @override
-  Optional<T> operator+(Optional<T> other) => _internalMap(other, (val) => val + other.value);
-
-  @override
-  Optional<T> operator-(Optional<T> other) => _internalMap(other, (val) => val - other.value);
-
-  @override
-  Optional<T> operator*(Optional<T> other) => _internalMap(other, (val) => val * other.value);
-
-  @override
-  Optional<T> operator/(Optional<T> other) => _internalMap(other, (val) => val / other.value);
-
-  @override
-  Optional<T> operator~/(Optional<T> other) => _internalMap(other, (val) => val ~/ other.value);
-
-  @override
-  Optional<T> operator^(Optional<T> other) => _internalMap(other, (val) => val ^ other.value);
-
-  @override
-  Optional<T> operator&(Optional<T> other) => _internalMap(other, (val) => val & other.value);
-
-  @override
-  Optional<T> operator%(Optional<T> other) => _internalMap(other, (val) => val % other.value);
-
-  @override
-  Optional<T> operator>>(Optional<T> other) => _internalMap(other, (val) => val >> other.value);
-
-  @override
-  Optional<T> operator<<(Optional<T> other) => _internalMap(other, (val) => val << other.value);
-
-  @override
-  Optional<T> operator-() => _internalMap(this, (val) => -val);
-
-  @override
-  Optional<T> operator~() => _internalMap(this, (val) => ~val);
-
-  _internalMap(Optional<T> other, operation(val)) => other.isPresent ? map(operation) : empty;
+  bool operator ==(Object other) => other is _Present && other._value == _value;
 
   @override
   String toString() => 'Optional[value: $_value]';
+
+  @override
+  Optional<R> cast<R>() => Optional._castFrom<R>(this);
 }

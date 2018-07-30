@@ -5,7 +5,7 @@ part 'src/present.dart';
 part 'src/novaluepresent.dart';
 
 /// A constant, absent Optional.
-const Optional<dynamic> empty = const _Absent<dynamic>();
+const Optional<dynamic> empty = const _Absent();
 
 /**
  * A container object which may contain a non-null value.
@@ -31,7 +31,7 @@ abstract class Optional<T> {
    */
   factory Optional.ofNullable(T value) {
     if(value == null) {
-      return empty;
+      return empty.cast<T>();
     } else {
       return new _Present<T>(value);
     }
@@ -82,39 +82,8 @@ abstract class Optional<T> {
   @override
   bool operator ==(Object other);
 
-  /// Returns an Optional with a value equal to applying the + operator to the values of both Optional operands, if both are present.  Otherwise, returns an empty Optional.
-  Optional<T> operator+(Optional<T> other);
+  /// Returns a view of this Optional as an Optional with an [R] value
+  Optional<R> cast<R>();
 
-  /// Returns an Optional with a value equal to applying the - operator to the values of both Optional operands, if both are present.  Otherwise, returns an empty Optional.
-  Optional<T> operator-(Optional<T> other);
-
-  /// Returns an Optional with a value equal to applying the * operator to the values of both Optional operands, if both are present.  Otherwise, returns an empty Optional.
-  Optional<T> operator*(Optional<T> other);
-
-  /// Returns an Optional with a value equal to applying the / operator to the values of both Optional operands, if both are present.  Otherwise, returns an empty Optional.
-  Optional<T> operator/(Optional<T> other);
-
-  /// Returns an Optional with a value equal to applying the ~/ operator to the values of both Optional operands, if both are present.  Otherwise, returns an empty Optional.
-  Optional<T> operator~/(Optional<T> other);
-
-  /// Returns an Optional with a value equal to applying the ^ operator to the values of both Optional operands, if both are present.  Otherwise, returns an empty Optional.
-  Optional<T> operator^(Optional<T> other);
-
-  /// Returns an Optional with a value equal to applying the & operator to the values of both Optional operands, if both are present.  Otherwise, returns an empty Optional.
-  Optional<T> operator&(Optional<T> other);
-
-  /// Returns an Optional with a value equal to applying the % operator to the values of both Optional operands, if both are present.  Otherwise, returns an empty Optional.
-  Optional<T> operator%(Optional<T> other);
-
-  /// Returns an Optional with a value equal to applying the >> operator to the values of both Optional operands, if both are present.  Otherwise, returns an empty Optional.
-  Optional<T> operator>>(Optional<T> other);
-
-  /// Returns an Optional with a value equal to applying the << operator to the values of both Optional operands, if both are present.  Otherwise, returns an empty Optional.
-  Optional<T> operator<<(Optional<T> other);
-
-  /// Returns an Optional with a value equal to applying the unary- operator to the value of this Optional, if present.  Otherwise, returns an empty Optional.
-  Optional<T> operator-();
-
-  /// Returns an Optional with a value equal to applying the unary~ operator to the value of this Optional, if present.  Otherwise, returns an empty Optional.
-  Optional<T> operator~();
+  static Optional<R> _castFrom<R>(Optional<dynamic> optional) => optional.map((v) => v as R);
 }

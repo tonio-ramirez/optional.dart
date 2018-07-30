@@ -36,44 +36,11 @@ class _Absent<T> implements Optional<T> {
   int get hashCode => 0;
 
   @override
-  bool operator ==(Object other) => other is _Absent<T>;
-
-  @override
-  Optional<T> operator+(Optional<T> other) => this;
-
-  @override
-  Optional<T> operator-(Optional<T> other) => this;
-
-  @override
-  Optional<T> operator*(Optional<T> other) => this;
-
-  @override
-  Optional<T> operator/(Optional<T> other) => this;
-
-  @override
-  Optional<T> operator~/(Optional<T> other) => this;
-
-  @override
-  Optional<T> operator^(Optional<T> other) => this;
-
-  @override
-  Optional<T> operator&(Optional<T> other) => this;
-
-  @override
-  Optional<T> operator%(Optional<T> other) => this;
-
-  @override
-  Optional<T> operator>>(Optional<T> other) => this;
-
-  @override
-  Optional<T> operator<<(Optional<T> other) => this;
-
-  @override
-  Optional<T> operator-() => this;
-
-  @override
-  Optional<T> operator~() => this;
+  bool operator ==(Object other) => other is _Absent;
 
   @override
   String toString() => 'Optional[empty]';
+
+  @override
+  Optional<R> cast<R>() => const _Absent();
 }

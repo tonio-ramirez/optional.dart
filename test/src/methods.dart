@@ -1,29 +1,21 @@
 part of optional_test;
 
-// ignore: public_member_api_docs
-final Matcher throwsNoSuchElementError = throwsA(const isInstanceOf<NoValuePresentError>());
+final Matcher throwsNoSuchElementError = throwsA(const TypeMatcher<NoValuePresentError>());
 
-// ignore: public_member_api_docs
 class Consumer<T> {
-// ignore: public_member_api_docs
   void call(T value) {}
 }
 
-// ignore: public_member_api_docs
 class Method {
-// ignore: public_member_api_docs
   void call() {}
 }
 
-// ignore: public_member_api_docs
 class MockConsumer<T> extends Mock implements Consumer<T> {
 }
 
-// ignore: public_member_api_docs
 class MockMethod extends Mock implements Method {
 }
 
-// ignore: public_member_api_docs
 void runMethodTests() {
   group('constructor', () {
     test('new Optional.of(<non-null>) returns normally', () {
@@ -109,7 +101,6 @@ void runMethodTests() {
     final consumer = new MockConsumer<int>();
     final orElse = new MockMethod();
 
-    // ignore: type_annotate_public_apis
     void callConsumer(i) => consumer.call(i);
     void callOrElse() => orElse.call();
 
@@ -120,22 +111,18 @@ void runMethodTests() {
 
     test('calls consumer when present', () {
       expect(() => new Optional.of(1).ifPresent(callConsumer), returnsNormally);
-      // ignore: use_of_void_result
       verify(consumer.call(1)).called(1);
     });
     test('does not call orElse when present', () {
       expect(() => new Optional.of(1).ifPresent(callConsumer, orElse: callOrElse), returnsNormally);
-      // ignore: use_of_void_result
       verifyNever(orElse.call());
     });
     test('does not call consumer when empty', () {
       expect(() => const Optional.empty().ifPresent(callConsumer), returnsNormally);
-      // ignore: use_of_void_result
       verifyNever(consumer.call(any));
     });
     test('calls orElse when empty', () {
       expect(() => const Optional.empty().ifPresent(callConsumer, orElse: callOrElse), returnsNormally);
-      // ignore: use_of_void_result
       verify(orElse.call()).called(1);
     });
   });
@@ -145,26 +132,6 @@ void runMethodTests() {
     });
     test("is equal to value's hash code when present", () {
       expect(new Optional.of(1).hashCode, equals(1.hashCode));
-    });
-  });
-  group('==', () {
-    test('two empty untyped Optionals are equal', () {
-      expect(const Optional.empty(), equals(const Optional.empty()));
-    });
-    test('two Optionals with same value are equal', () {
-      expect(new Optional.of(1), equals(new Optional.of(1)));
-    });
-    test('two Optionals with different values are not equal', () {
-      expect(new Optional.of(1), isNot(new Optional.of(2)));
-    });
-    test('an empty Optional is not equal to an Optional with value', () {
-      expect(new Optional.of(1), isNot(const Optional.empty()));
-    });
-    test('two empty Optionals of different types are not equal', () {
-      expect(const Optional<int>.empty(), isNot(const Optional<String>.empty()));
-    });
-    test('two empty Optionals of same type are equal', () {
-      expect(const Optional<int>.empty(), equals(const Optional<int>.empty()));
     });
   });
 }
