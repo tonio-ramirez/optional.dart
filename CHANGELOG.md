@@ -1,5 +1,11 @@
 # Changelog
 
+### 3.0.0
+  * **(Breaking change)** Removed operator overloads.  They were breaking strong-mode type checks.
+  * **(Breaking change)** Made equality checks more consistent with Dart standards.  Now any two empty `Optional`s are
+    equal, and two non-empty `Optional`s are equal if their values are equal, regardless of their types.
+  * Added a `cast()` method, similar to `List.cast()`.
+
 ### 2.0.2
   * Better use of generic methods (no more `dynamic`).
 
