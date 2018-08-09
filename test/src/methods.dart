@@ -28,12 +28,12 @@ void runMethodTests() {
       expect(() => Optional.ofNullable(1), returnsNormally);
     });
     test('new Optional.empty() does not throw', () {
-      expect(() => const Optional.empty(), returnsNormally);
+      expect(() => const Optional<dynamic>.empty(), returnsNormally);
     });
   });
   group('isPresent', () {
     test('when empty is false', () {
-      expect(const Optional.empty().isPresent, isFalse);
+      expect(const Optional<dynamic>.empty().isPresent, isFalse);
     });
     test('when ofNullable(null) is false', () {
       expect(Optional.ofNullable(null).isPresent, isFalse);
@@ -47,7 +47,8 @@ void runMethodTests() {
   });
   group('value', () {
     test('when empty throws', () {
-      expect(() => const Optional.empty().value, throwsNoSuchElementError);
+      expect(() => const Optional<dynamic>.empty().value,
+          throwsNoSuchElementError);
     });
     test('when isPresent returns value', () {
       expect(Optional.of(1).value, equals(1));
@@ -68,33 +69,33 @@ void runMethodTests() {
           equals(Optional.of(2)));
     });
     test('flat map when empty returns empty', () {
-      expect(const Optional.empty().flatMap((n) => Optional.of(n + 1)),
-          equals(const Optional.empty()));
+      expect(const Optional<int>.empty().flatMap((n) => Optional.of(n + 1)),
+          equals(const Optional<int>.empty()));
     });
     test('map when present returns new Optional of result of map operation',
         () {
       expect(Optional.of(1).map((n) => n + 1), equals(Optional.of(2)));
     });
     test('map when empty returns empty', () {
-      expect(const Optional.empty().map((n) => n + 1),
-          equals(const Optional.empty()));
+      expect(const Optional<int>.empty().map((n) => n + 1),
+          equals(const Optional<int>.empty()));
     });
   });
   group('or', () {
     test('orElse(val) returns val when empty', () {
-      expect(const Optional.empty().orElse(2), equals(2));
+      expect(const Optional<int>.empty().orElse(2), equals(2));
     });
     test('orElse(val) returns value when present', () {
       expect(Optional.of(1).orElse(2), equals(1));
     });
     test('orElseGet(f) returns f() when empty', () {
-      expect(const Optional.empty().orElseGet(() => 2), equals(2));
+      expect(const Optional<int>.empty().orElseGet(() => 2), equals(2));
     });
     test('orElseGet(f) returns value when present', () {
       expect(Optional.of(1).orElseGet(() => 2), equals(1));
     });
     test('orElseThrow(f) throws f() when empty', () {
-      expect(() => const Optional.empty().orElseThrow(() => 'exception'),
+      expect(() => const Optional<int>.empty().orElseThrow(() => 'exception'),
           throwsA('exception'));
     });
     test('orElseThrow(f) returns value when present', () {
@@ -105,7 +106,7 @@ void runMethodTests() {
     final consumer = MockConsumer<int>();
     final orElse = MockMethod();
 
-    void callConsumer(i) => consumer.call(i);
+    void callConsumer(int i) => consumer.call(i);
     void callOrElse() => orElse.call();
 
     tearDown(() {
@@ -123,13 +124,13 @@ void runMethodTests() {
       verifyNever(orElse.call());
     });
     test('does not call consumer when empty', () {
-      expect(() => const Optional.empty().ifPresent(callConsumer),
+      expect(() => const Optional<int>.empty().ifPresent(callConsumer),
           returnsNormally);
       verifyNever(consumer.call(any));
     });
     test('calls orElse when empty', () {
       expect(
-          () => const Optional.empty()
+          () => const Optional<int>.empty()
               .ifPresent(callConsumer, orElse: callOrElse),
           returnsNormally);
       verify(orElse.call()).called(1);
@@ -137,7 +138,7 @@ void runMethodTests() {
   });
   group('hashCode', () {
     test('is 0 when empty', () {
-      expect(const Optional.empty().hashCode, equals(0));
+      expect(const Optional<int>.empty().hashCode, equals(0));
     });
     test("is equal to value's hash code when present", () {
       expect(Optional.of(1).hashCode, equals(1.hashCode));

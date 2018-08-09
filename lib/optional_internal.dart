@@ -5,7 +5,7 @@ part 'src/present.dart';
 part 'src/novaluepresent.dart';
 
 /// A constant, absent Optional.
-const Optional<dynamic> empty = _Absent();
+const Optional<dynamic> empty = _Absent<dynamic>();
 
 /**
  * A container object which may contain a non-null value.
@@ -31,7 +31,7 @@ abstract class Optional<T> {
    */
   factory Optional.ofNullable(T value) {
     if (value == null) {
-      return empty.cast<T>();
+      return empty.cast();
     } else {
       return _Present<T>(value);
     }
@@ -83,8 +83,5 @@ abstract class Optional<T> {
   bool operator ==(Object other);
 
   /// Returns a view of this Optional as an Optional with an [R] value
-  Optional<R> cast<R>();
-
-  static Optional<R> _castFrom<R>(Optional<dynamic> optional) =>
-      optional.map((v) => v as R);
+  Optional<R> cast<R, T extends R>();
 }

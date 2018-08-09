@@ -16,7 +16,7 @@ class _Present<T> implements Optional<T> {
     if (predicate(_value))
       return this;
     else
-      return empty.cast<T>();
+      return empty.cast();
   }
 
   @override
@@ -35,8 +35,7 @@ class _Present<T> implements Optional<T> {
   T orElseThrow(dynamic supplyError()) => _value;
 
   @override
-  void ifPresent(void consume(T val), {void orElse()}) =>
-      Function.apply(consume, [_value]);
+  void ifPresent(void consume(T val), {void orElse()}) => consume(_value);
 
   @override
   int get hashCode => _value.hashCode;
@@ -48,5 +47,5 @@ class _Present<T> implements Optional<T> {
   String toString() => 'Optional[value: $_value]';
 
   @override
-  Optional<R> cast<R>() => Optional._castFrom<R>(this);
+  Optional<R> cast<R, T extends R>() => this as Optional<R>;
 }

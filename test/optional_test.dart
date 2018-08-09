@@ -7,7 +7,7 @@ import 'package:mockito/mockito.dart';
 part 'src/equality.dart';
 part 'src/methods.dart';
 
-main() {
+void main() {
   group('Methods', runMethodTests);
   group('Equality', runEqualityTests);
 }

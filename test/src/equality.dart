@@ -2,8 +2,9 @@ part of optional_test;
 
 void runEqualityTests() {
   group('==', () {
-    test('two empty untyped Optionals are equal', () {
-      expect(const Optional.empty(), equals(const Optional.empty()));
+    test('two empty dynamic Optionals are equal', () {
+      expect(const Optional<dynamic>.empty(),
+          equals(const Optional<dynamic>.empty()));
     });
     test('two Optionals with same value are equal', () {
       expect(Optional.of(1), equals(Optional.of(1)));
@@ -15,7 +16,7 @@ void runEqualityTests() {
       expect(Optional.of(1), equals(Optional.of(1.0)));
     });
     test('an empty Optional is not equal to an Optional with value', () {
-      expect(Optional.of(1), isNot(const Optional.empty()));
+      expect(Optional.of(1), isNot(const Optional<int>.empty()));
     });
     test('two empty Optionals of different types are equal', () {
       expect(

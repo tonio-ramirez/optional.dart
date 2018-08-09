@@ -24,7 +24,7 @@ void emptyExample() {
 
   final anEmpty = Optional.ofNullable(null);
   print(anEmpty.isPresent); // prints "false"
-  const anotherEmpty = Optional.empty();
+  const anotherEmpty = Optional<dynamic>.empty();
   const yetAnotherEmpty = empty;
   print(anEmpty == anotherEmpty); // prints "true"
   print(anEmpty == yetAnotherEmpty); // prints "true"
@@ -60,7 +60,7 @@ void mapExample() {
   final three = two.flatMap((v) => Optional.of(v + 1));
   print(three.value); // prints "3"
 
-  const anEmpty = Optional.empty();
+  const anEmpty = Optional<int>.empty();
   var stillEmpty = anEmpty.map((v) => v + 1);
   print(stillEmpty.isPresent); // prints "false"
 
