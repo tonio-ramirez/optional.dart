@@ -18,14 +18,14 @@ class MockMethod extends Mock implements Method {}
 void runMethodTests() {
   group('constructor', () {
     test('new Optional.of(<non-null>) returns normally', () {
-      expect(() => new Optional.of(1), returnsNormally);
+      expect(() => Optional.of(1), returnsNormally);
     });
     test('new Optional.of(null) throws', () {
-      expect(() => new Optional.of(null), throwsArgumentError);
+      expect(() => Optional.of(null), throwsArgumentError);
     });
     test('new Optional.ofNullable() never throws', () {
-      expect(() => new Optional.ofNullable(null), returnsNormally);
-      expect(() => new Optional.ofNullable(1), returnsNormally);
+      expect(() => Optional.ofNullable(null), returnsNormally);
+      expect(() => Optional.ofNullable(1), returnsNormally);
     });
     test('new Optional.empty() does not throw', () {
       expect(() => const Optional.empty(), returnsNormally);
@@ -36,13 +36,13 @@ void runMethodTests() {
       expect(const Optional.empty().isPresent, isFalse);
     });
     test('when ofNullable(null) is false', () {
-      expect(new Optional.ofNullable(null).isPresent, isFalse);
+      expect(Optional.ofNullable(null).isPresent, isFalse);
     });
     test('when ofNullable(<non-null>) is true', () {
-      expect(new Optional.ofNullable(1).isPresent, isTrue);
+      expect(Optional.ofNullable(1).isPresent, isTrue);
     });
     test('when of(value) is true', () {
-      expect(new Optional.of(1).isPresent, isTrue);
+      expect(Optional.of(1).isPresent, isTrue);
     });
   });
   group('value', () {
@@ -50,30 +50,30 @@ void runMethodTests() {
       expect(() => const Optional.empty().value, throwsNoSuchElementError);
     });
     test('when isPresent returns value', () {
-      expect(new Optional.of(1).value, equals(1));
+      expect(Optional.of(1).value, equals(1));
     });
   });
   group('filter', () {
     test('returns empty when non-match', () {
-      expect(new Optional.of(1).filter((n) => n != 1).isPresent, isFalse);
+      expect(Optional.of(1).filter((n) => n != 1).isPresent, isFalse);
     });
     test('returns Optional with same value when match', () {
-      expect(new Optional.of(1).filter((n) => n == 1).isPresent, isTrue);
-      expect(new Optional.of(1).filter((n) => n == 1).value, equals(1));
+      expect(Optional.of(1).filter((n) => n == 1).isPresent, isTrue);
+      expect(Optional.of(1).filter((n) => n == 1).value, equals(1));
     });
   });
   group('maps', () {
     test('flat map when present returns result of map operation', () {
-      expect(new Optional.of(1).flatMap((n) => new Optional.of(n + 1)),
-          equals(new Optional.of(2)));
+      expect(Optional.of(1).flatMap((n) => Optional.of(n + 1)),
+          equals(Optional.of(2)));
     });
     test('flat map when empty returns empty', () {
-      expect(const Optional.empty().flatMap((n) => new Optional.of(n + 1)),
+      expect(const Optional.empty().flatMap((n) => Optional.of(n + 1)),
           equals(const Optional.empty()));
     });
     test('map when present returns new Optional of result of map operation',
         () {
-      expect(new Optional.of(1).map((n) => n + 1), equals(new Optional.of(2)));
+      expect(Optional.of(1).map((n) => n + 1), equals(Optional.of(2)));
     });
     test('map when empty returns empty', () {
       expect(const Optional.empty().map((n) => n + 1),
@@ -85,25 +85,25 @@ void runMethodTests() {
       expect(const Optional.empty().orElse(2), equals(2));
     });
     test('orElse(val) returns value when present', () {
-      expect(new Optional.of(1).orElse(2), equals(1));
+      expect(Optional.of(1).orElse(2), equals(1));
     });
     test('orElseGet(f) returns f() when empty', () {
       expect(const Optional.empty().orElseGet(() => 2), equals(2));
     });
     test('orElseGet(f) returns value when present', () {
-      expect(new Optional.of(1).orElseGet(() => 2), equals(1));
+      expect(Optional.of(1).orElseGet(() => 2), equals(1));
     });
     test('orElseThrow(f) throws f() when empty', () {
       expect(() => const Optional.empty().orElseThrow(() => 'exception'),
           throwsA('exception'));
     });
     test('orElseThrow(f) returns value when present', () {
-      expect(new Optional.of(1).orElseThrow(() => 'exception'), equals(1));
+      expect(Optional.of(1).orElseThrow(() => 'exception'), equals(1));
     });
   });
   group('ifPresent', () {
-    final consumer = new MockConsumer<int>();
-    final orElse = new MockMethod();
+    final consumer = MockConsumer<int>();
+    final orElse = MockMethod();
 
     void callConsumer(i) => consumer.call(i);
     void callOrElse() => orElse.call();
@@ -114,12 +114,11 @@ void runMethodTests() {
     });
 
     test('calls consumer when present', () {
-      expect(() => new Optional.of(1).ifPresent(callConsumer), returnsNormally);
+      expect(() => Optional.of(1).ifPresent(callConsumer), returnsNormally);
       verify(consumer.call(1)).called(1);
     });
     test('does not call orElse when present', () {
-      expect(
-          () => new Optional.of(1).ifPresent(callConsumer, orElse: callOrElse),
+      expect(() => Optional.of(1).ifPresent(callConsumer, orElse: callOrElse),
           returnsNormally);
       verifyNever(orElse.call());
     });
@@ -141,7 +140,7 @@ void runMethodTests() {
       expect(const Optional.empty().hashCode, equals(0));
     });
     test("is equal to value's hash code when present", () {
-      expect(new Optional.of(1).hashCode, equals(1.hashCode));
+      expect(Optional.of(1).hashCode, equals(1.hashCode));
     });
   });
 }

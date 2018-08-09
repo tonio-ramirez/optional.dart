@@ -6,7 +6,7 @@ class _Absent<T> implements Optional<T> {
   const _Absent._internal();
 
   @override
-  T get value => throw new NoValuePresentError();
+  T get value => throw NoValuePresentError();
 
   @override
   bool get isPresent => false;

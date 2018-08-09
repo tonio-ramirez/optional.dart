@@ -6,16 +6,16 @@ void runEqualityTests() {
       expect(const Optional.empty(), equals(const Optional.empty()));
     });
     test('two Optionals with same value are equal', () {
-      expect(new Optional.of(1), equals(new Optional.of(1)));
+      expect(Optional.of(1), equals(Optional.of(1)));
     });
     test('two Optionals with different values are not equal', () {
-      expect(new Optional.of(1), isNot(new Optional.of(2)));
+      expect(Optional.of(1), isNot(Optional.of(2)));
     });
     test('two Optionals with equal values of different types are equal', () {
-      expect(new Optional.of(1), equals(new Optional.of(1.0)));
+      expect(Optional.of(1), equals(Optional.of(1.0)));
     });
     test('an empty Optional is not equal to an Optional with value', () {
-      expect(new Optional.of(1), isNot(const Optional.empty()));
+      expect(Optional.of(1), isNot(const Optional.empty()));
     });
     test('two empty Optionals of different types are equal', () {
       expect(
