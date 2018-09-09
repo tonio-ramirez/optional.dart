@@ -80,7 +80,24 @@ void runMethodTests() {
       expect(const Optional<int>.empty().map((n) => n + 1),
           equals(const Optional<int>.empty()));
     });
+    test('map when generic type changes', () {
+      var o = new Optional<int>.ofNullable(null).map((i) => 'i=$i');
+      expect(o, equals(const Optional<String>.empty()));
+    });
+
+    test('map empty optional and then use orElse', () {
+      var o = const Optional<int>.empty().map((i) => 'i=$i').orElse('');
+      expect(o, equals(''));
+    });
+
+
+    test('map not empty optional and then use orElse', () {
+      var o = Optional<int>.of(5).map((i) => 'i=$i').orElse('');
+      expect(o, equals('i=5'));
+    });
   });
+
+
   group('or', () {
     test('orElse(val) returns val when empty', () {
       expect(const Optional<int>.empty().orElse(2), equals(2));

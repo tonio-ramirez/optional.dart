@@ -43,5 +43,5 @@ class _Absent<T> implements Optional<T> {
   String toString() => 'Optional[empty]';
 
   @override
-  Optional<R> cast<R, T extends R>() => const _Absent();
+  Optional<R> cast<R>() => _Absent<R>();
 }

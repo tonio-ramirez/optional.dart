@@ -83,5 +83,5 @@ abstract class Optional<T> {
   bool operator ==(Object other);
 
   /// Returns a view of this Optional as an Optional with an [R] value
-  Optional<R> cast<R, T extends R>();
+  Optional<R> cast<R>();
 }
