@@ -16,7 +16,7 @@ class _Present<T> implements Optional<T> {
     if (predicate(_value))
       return this;
     else
-      return empty.cast();
+      return const Optional.empty();
   }
 
   @override

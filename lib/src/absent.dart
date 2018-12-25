@@ -12,13 +12,13 @@ class _Absent<T> implements Optional<T> {
   bool get isPresent => false;
 
   @override
-  Optional<T> filter(bool predicate(T val)) => empty.cast();
+  Optional<T> filter(bool predicate(T val)) => const Optional.empty();
 
   @override
-  Optional<R> flatMap<R>(Optional<R> mapper(T val)) => empty.cast();
+  Optional<R> flatMap<R>(Optional<R> mapper(T val)) => Optional<R>.empty();
 
   @override
-  Optional<R> map<R>(R mapper(T val)) => empty.cast();
+  Optional<R> map<R>(R mapper(T val)) => Optional<R>.empty();
 
   @override
   T orElse(T other) => other;
