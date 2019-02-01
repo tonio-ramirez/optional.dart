@@ -24,7 +24,7 @@ abstract class Optional<T> {
 
   /// Creates a new Optional with the given value, if non-null.  Otherwise, returns an empty Optional.
   factory Optional.ofNullable(T value) =>
-      value == null ? const Optional.empty() : Optional.of(value);
+      value == null ? Optional<T>.empty() : Optional.of(value);
 
   /// Creates an empty Optional.
   const factory Optional.empty() = _Absent<T>._internal;

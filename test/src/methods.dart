@@ -112,6 +112,10 @@ void runMethodTests() {
     test('orElseThrow(f) returns value when present', () {
       expect(Optional.of(1).orElseThrow(() => 'exception'), equals(1));
     });
+    test('orElse of ofNullable', (){
+      expect(Optional<int>.ofNullable(null).orElse(0), equals(0));
+    });
+
   });
   group('ifPresent', () {
     final consumer = MockConsumer<int>();
