@@ -1,5 +1,8 @@
 # Changelog
 
+### 3.0.1
+  * Absent `cast()` method bug-fix
+
 ### 3.0.0
   * **(Breaking change)** Removed operator overloads.  They were breaking strong-mode type checks.
   * **(Breaking change)** Made equality checks more consistent with Dart standards.  Now any two empty `Optional`s are
