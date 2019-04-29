@@ -47,5 +47,5 @@ class _Present<T> implements Optional<T> {
   String toString() => 'Optional[value: $_value]';
 
   @override
-  Optional<R> cast<R>() => this as Optional<R>;
+  Optional<R> cast<R>() => _Present(value as R);
 }

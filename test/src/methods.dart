@@ -81,18 +81,18 @@ void runMethodTests() {
           equals(const Optional<int>.empty()));
     });
     test('map when generic type changes', () {
-      var o = new Optional<int>.ofNullable(null).map((i) => 'i=$i');
+      final o = new Optional<int>.ofNullable(null).map((i) => 'i=$i');
       expect(o, equals(const Optional<String>.empty()));
     });
 
     test('map empty optional and then use orElse', () {
-      var o = const Optional<int>.empty().map((i) => 'i=$i').orElse('');
+      final o = const Optional<int>.empty().map((i) => 'i=$i').orElse('');
       expect(o, equals(''));
     });
 
 
     test('map not empty optional and then use orElse', () {
-      var o = Optional<int>.of(5).map((i) => 'i=$i').orElse('');
+      final o = Optional<int>.of(5).map((i) => 'i=$i').orElse('');
       expect(o, equals('i=5'));
     });
   });
@@ -162,6 +162,24 @@ void runMethodTests() {
     });
     test("is equal to value's hash code when present", () {
       expect(Optional.of(1).hashCode, equals(1.hashCode));
+    });
+  });
+  group('cast', () {
+    test('is not required to upcast', () {
+      expect(Optional<int>.of(1), const TypeMatcher<Optional<num>>());
+    });
+    test('is required to downcast', () {
+      expect(Optional<num>.of(1), isNot(const TypeMatcher<Optional<int>>()));
+    });
+    test('casts internal value', () {
+      expect(Optional<num>.of(1).cast<int>(), const TypeMatcher<Optional<int>>());
+    });
+    test('casts empty value', () {
+      expect(const Optional<int>.empty().cast<String>(), const TypeMatcher<Optional<String>>());
+    });
+    test('preseves equality', () {
+      final num1 = Optional<num>.of(1);
+      expect(num1, equals(num1.cast<int>()));
     });
   });
 }
