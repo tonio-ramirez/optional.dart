@@ -1,4 +1,6 @@
 # Changelog
+### 3.0.2
+  * Fix Present `cast()` issue
 
 ### 3.0.1
   * Absent `cast()` method bug-fix
