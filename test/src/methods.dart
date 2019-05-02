@@ -182,4 +182,12 @@ void runMethodTests() {
       expect(num1, equals(num1.cast<int>()));
     });
   });
+  group('cast.orElse', () {
+    test('cast empty Optional, then orElse, returns else', () {
+      expect(const Optional<int>.empty().cast<String>().orElse('a'), equals('a'));
+    });
+    test('cast present Optional, then orElse, returns value', () {
+      expect(Optional<num>.of(1).cast<int>().orElse(2), equals(1));
+    });
+  });
 }
