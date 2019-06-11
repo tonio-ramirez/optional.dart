@@ -13,10 +13,11 @@ class _Present<T> implements Optional<T> {
 
   @override
   Optional<T> filter(bool predicate(T val)) {
-    if (predicate(_value))
+    if (predicate(_value)) {
       return this;
-    else
+    } else {
       return empty.cast();
+    }
   }
 
   @override
