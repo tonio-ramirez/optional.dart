@@ -1,5 +1,7 @@
 library optional_internal;
 
+import 'package:collection/collection.dart';
+
 part 'src/absent.dart';
 part 'src/present.dart';
 part 'src/novaluepresent.dart';
@@ -53,6 +55,9 @@ abstract class Optional<T> {
   /// If the mapper returns a null value, returns an empty Optional.
   Optional<R> map<R>(R mapper(T val));
 
+  /// Whether the Optional contains the passed value.
+  bool contains(T val);
+
   /// Returns this Optional's value, if present.  Otherwise, returns other.
   T orElse(T other);
 
@@ -64,6 +69,12 @@ abstract class Optional<T> {
 
   /// Invokes consume() with this Optional's value, if present.  Otherwise, if orElse is passed, invokes it, otherwise does nothing.
   void ifPresent(void consume(T val), {void orElse()});
+
+  /// Returns a Set containing the value if present.  Otherwise, returns an empty Set. This Set is unmodifiable.
+  Set<T> toSet();
+
+  /// Returns a List containing the value if present.  Otherwise, returns an empty List. This List is unmodifiable.
+  List<T> toList();
 
   /// The hashCode of this Optional's value, if present.  Otherwise, 0.
   @override

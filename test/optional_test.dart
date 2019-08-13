@@ -1,6 +1,7 @@
 library optional_test;
 
 import 'package:optional/optional.dart';
+import 'package:optional/optional.dart' as prefix0;
 import 'package:test/test.dart';
 import 'package:mockito/mockito.dart';
 

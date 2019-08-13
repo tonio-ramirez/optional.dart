@@ -97,6 +97,17 @@ void runMethodTests() {
     });
   });
 
+  group('contains', () {
+    test('contains(val) returns false when empty', () {
+      expect(const Optional<int>.empty().contains(3), isFalse);
+    });
+    test('contains(val) returns false when other value present', () {
+      expect(Optional.of(1).contains(3), isFalse);
+    });
+    test('contains(val) returns true when same value present', () {
+      expect(Optional.of(3).contains(3), isTrue);
+    });
+  });
 
   group('or', () {
     test('orElse(val) returns val when empty', () {
@@ -156,6 +167,41 @@ void runMethodTests() {
       verify(orElse.call()).called(1);
     });
   });
+
+  group('toSet', () {
+    test('returns empty set when empty', () {
+      expect(const Optional<int>.empty().toSet().isEmpty, isTrue);
+    });
+    test('returns set with value when present', () {
+      expect(Optional.of(1).toSet().contains(1), isTrue);
+    });
+    test('returns set with one value when present', () {
+      expect(Optional.of(1).toSet().length, equals(1));
+    });
+    test('returns unmodifiable set', () {
+      expect(
+          () => const Optional<int>.empty().toSet().add(1),
+          throwsA(const TypeMatcher<UnsupportedError>()));
+    });
+  });
+
+  group('toList', () {
+    test('returns empty list when empty', () {
+      expect(const Optional<int>.empty().toList().isEmpty, isTrue);
+    });
+    test('returns list with value when present', () {
+      expect(Optional.of(1).toList().contains(1), isTrue);
+    });
+    test('returns list with one value when present', () {
+      expect(Optional.of(1).toList().length, equals(1));
+    });
+    test('returns unmodifiable list', () {
+      expect(
+          () => const Optional<int>.empty().toList().add(1),
+          throwsA(const TypeMatcher<UnsupportedError>()));
+    });
+  });
+
   group('hashCode', () {
     test('is 0 when empty', () {
       expect(const Optional<int>.empty().hashCode, equals(0));

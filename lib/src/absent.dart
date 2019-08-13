@@ -21,6 +21,9 @@ class _Absent<T> implements Optional<T> {
   Optional<R> map<R>(R mapper(T val)) => empty.cast();
 
   @override
+  bool contains(T val) => false;
+
+  @override
   T orElse(T other) => other;
 
   @override
@@ -32,6 +35,12 @@ class _Absent<T> implements Optional<T> {
   @override
   void ifPresent(void consume(T val), {void orElse()}) =>
       orElse == null ? null : orElse();
+
+  @override
+  Set<T> toSet() => UnmodifiableSetView.empty();
+
+  @override
+  List<T> toList() => new UnmodifiableListView([]);
 
   @override
   int get hashCode => 0;

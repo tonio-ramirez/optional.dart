@@ -27,6 +27,9 @@ class _Present<T> implements Optional<T> {
   Optional<R> map<R>(R mapper(T val)) => Optional<R>.ofNullable(mapper(_value));
 
   @override
+  bool contains(T val) => _value == val;
+
+  @override
   T orElse(T other) => _value;
 
   @override
@@ -37,6 +40,12 @@ class _Present<T> implements Optional<T> {
 
   @override
   void ifPresent(void consume(T val), {void orElse()}) => consume(_value);
+
+  @override
+  Set<T> toSet() => new UnmodifiableSetView(Set.of([_value]));
+
+  @override
+  List<T> toList() => new UnmodifiableListView([_value]);
 
   @override
   int get hashCode => _value.hashCode;
