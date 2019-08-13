@@ -1,4 +1,9 @@
 # Changelog
+### 3.1.0
+  * Added `contains(val)` method.
+  * Added `toSet()` method.
+  * Added `toList()` method.
+  
 ### 3.0.2
   * Fix Present `cast()` issue
 

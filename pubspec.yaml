@@ -1,5 +1,5 @@
 name: optional
-version: 3.0.2+1
+version: 3.1.0
 author: Juan Antonio Ramirez <tonior@gmail.com>
 description: An implementation of the Optional type, which helps avoid dealing with null references
 homepage: https://github.com/tonio-ramirez/optional.dart
