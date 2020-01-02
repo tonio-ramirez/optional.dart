@@ -62,6 +62,9 @@ void runMethodTests() {
       expect(Optional.of(1).filter((n) => n == 1).isPresent, isTrue);
       expect(Optional.of(1).filter((n) => n == 1).value, equals(1));
     });
+    test('returns empty when called on empty Optional', () {
+      expect(Optional<int>.empty().filter((n) => n == 1).isPresent, isFalse);
+    });
   });
   group('maps', () {
     test('flat map when present returns result of map operation', () {
@@ -234,6 +237,14 @@ void runMethodTests() {
     });
     test('cast present Optional, then orElse, returns value', () {
       expect(Optional<num>.of(1).cast<int>().orElse(2), equals(1));
+    });
+  });
+  group('toString', () {
+    test('of value returns "Optional[value: \$value]', () {
+      expect(Optional.of('hello').toString(), equals('Optional[value: hello]'));
+    });
+    test('of empty returns "Optional[empty]', () {
+      expect(Optional<int>.empty().toString(), equals('Optional[empty]'));
     });
   });
 }

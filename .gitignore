@@ -5,3 +5,4 @@ pubspec.lock
 packages
 .pub/
 .dart_tool/
+test/.test_coverage.dart

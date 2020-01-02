@@ -1,0 +1,22 @@
+name: Test Coveralls
+
+on: [push]
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    container:
+      image:  google/dart:latest
+
+    steps:
+    - uses: actions/checkout@v1
+    - name: Install dependencies
+      run: pub get
+    - name: Run test coverage
+      run: pub run test_coverage
+    - name: Coveralls
+      uses: coverallsapp/github-action@master
+      with:
+        github-token: ${{ secrets.GITHUB_TOKEN }}
