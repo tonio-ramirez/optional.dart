@@ -1,4 +1,5 @@
-![](https://github.com/tonio-ramirez/optional.dart/workflows/Dart%20CI/badge.svg)
+![](https://github.com/tonio-ramirez/optional.dart/workflows/tests/badge.svg?branch=master)
+[![Coverage Status](https://coveralls.io/repos/github/tonio-ramirez/optional.dart/badge.svg?branch=master)](https://coveralls.io/github/tonio-ramirez/optional.dart?branch=master)
 
 Optional.dart
 =============
