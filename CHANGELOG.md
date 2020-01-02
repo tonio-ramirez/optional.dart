@@ -1,4 +1,10 @@
 # Changelog
+### 4.0.0
+  * Added `toOptional` extension method
+  * **Note that this requires the minimum SDK version to be 2.6.0**,
+    please continue to use version 3.1.0 if upgrading to SDK version 2.6.0
+    is not an option.
+
 ### 3.1.0
   * Added `contains(val)` method.
   * Added `toSet()` method.
