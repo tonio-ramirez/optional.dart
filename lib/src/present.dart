@@ -24,7 +24,8 @@ class _Present<T> implements Optional<T> {
   Optional<R> flatMap<R>(Optional<R> Function(T) mapper) => mapper(_value);
 
   @override
-  Optional<R> map<R>(R Function(T) mapper) => Optional<R>.ofNullable(mapper(_value));
+  Optional<R> map<R>(R Function(T) mapper) =>
+      Optional<R>.ofNullable(mapper(_value));
 
   @override
   bool contains(T val) => _value == val;
@@ -39,7 +40,8 @@ class _Present<T> implements Optional<T> {
   T orElseThrow(dynamic Function() supplyError) => _value;
 
   @override
-  void ifPresent(void Function(T) consume, {void Function() orElse}) => consume(_value);
+  void ifPresent(void Function(T) consume, {void Function() orElse}) =>
+      consume(_value);
 
   @override
   Set<T> toSet() => UnmodifiableSetView({_value});

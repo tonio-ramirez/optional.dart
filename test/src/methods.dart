@@ -81,7 +81,7 @@ void runMethodTests() {
           equals(const Optional<int>.empty()));
     });
     test('map when generic type changes', () {
-      final o = new Optional<int>.ofNullable(null).map((i) => 'i=$i');
+      final o = Optional<int>.ofNullable(null).map((i) => 'i=$i');
       expect(o, equals(const Optional<String>.empty()));
     });
 
@@ -89,7 +89,6 @@ void runMethodTests() {
       final o = const Optional<int>.empty().map((i) => 'i=$i').orElse('');
       expect(o, equals(''));
     });
-
 
     test('map not empty optional and then use orElse', () {
       final o = Optional<int>.of(5).map((i) => 'i=$i').orElse('');
@@ -129,7 +128,7 @@ void runMethodTests() {
     test('orElseThrow(f) returns value when present', () {
       expect(Optional.of(1).orElseThrow(() => 'exception'), equals(1));
     });
-    test('orElse(val) of ofNullable(null) returns value', (){
+    test('orElse(val) of ofNullable(null) returns value', () {
       expect(Optional<int>.ofNullable(null).orElse(1), equals(1));
     });
   });
@@ -179,8 +178,7 @@ void runMethodTests() {
       expect(Optional.of(1).toSet().length, equals(1));
     });
     test('returns unmodifiable set', () {
-      expect(
-          () => const Optional<int>.empty().toSet().add(1),
+      expect(() => const Optional<int>.empty().toSet().add(1),
           throwsA(const TypeMatcher<UnsupportedError>()));
     });
   });
@@ -196,8 +194,7 @@ void runMethodTests() {
       expect(Optional.of(1).toList().length, equals(1));
     });
     test('returns unmodifiable list', () {
-      expect(
-          () => const Optional<int>.empty().toList().add(1),
+      expect(() => const Optional<int>.empty().toList().add(1),
           throwsA(const TypeMatcher<UnsupportedError>()));
     });
   });
@@ -218,10 +215,12 @@ void runMethodTests() {
       expect(Optional<num>.of(1), isNot(const TypeMatcher<Optional<int>>()));
     });
     test('casts internal value', () {
-      expect(Optional<num>.of(1).cast<int>(), const TypeMatcher<Optional<int>>());
+      expect(
+          Optional<num>.of(1).cast<int>(), const TypeMatcher<Optional<int>>());
     });
     test('casts empty value', () {
-      expect(const Optional<int>.empty().cast<String>(), const TypeMatcher<Optional<String>>());
+      expect(const Optional<int>.empty().cast<String>(),
+          const TypeMatcher<Optional<String>>());
     });
     test('preseves equality', () {
       final num1 = Optional<num>.of(1);
@@ -230,7 +229,8 @@ void runMethodTests() {
   });
   group('cast.orElse', () {
     test('cast empty Optional, then orElse, returns else', () {
-      expect(const Optional<int>.empty().cast<String>().orElse('a'), equals('a'));
+      expect(
+          const Optional<int>.empty().cast<String>().orElse('a'), equals('a'));
     });
     test('cast present Optional, then orElse, returns value', () {
       expect(Optional<num>.of(1).cast<int>().orElse(2), equals(1));
