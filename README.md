@@ -1,3 +1,5 @@
+![](https://github.com/tonio-ramirez/optional.dart/workflows/Dart%20CI/badge.svg)
+
 Optional.dart
 =============
 
