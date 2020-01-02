@@ -1,8 +1,8 @@
 name: optional
 version: 4.0.0
-author: Juan Antonio Ramirez <tonior@gmail.com>
 description: An implementation of the Optional type, which helps avoid dealing with null references
 homepage: https://github.com/tonio-ramirez/optional.dart
+repository: https://github.com/tonio-ramirez/optional.dart
 environment:
   sdk: '>=2.6.0 <3.0.0'
 dependencies:
