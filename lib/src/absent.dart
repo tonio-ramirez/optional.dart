@@ -12,13 +12,13 @@ class _Absent<T> implements Optional<T> {
   bool get isPresent => false;
 
   @override
-  Optional<T> filter(bool predicate(T val)) => empty.cast();
+  Optional<T> filter(bool Function(T) predicate) => empty.cast();
 
   @override
-  Optional<R> flatMap<R>(Optional<R> mapper(T val)) => empty.cast();
+  Optional<R> flatMap<R>(Optional<R> Function(T) mapper) => empty.cast();
 
   @override
-  Optional<R> map<R>(R mapper(T val)) => empty.cast();
+  Optional<R> map<R>(R Function(T) mapper) => empty.cast();
 
   @override
   bool contains(T val) => false;
@@ -27,20 +27,20 @@ class _Absent<T> implements Optional<T> {
   T orElse(T other) => other;
 
   @override
-  T orElseGet(T supply()) => supply();
+  T orElseGet(T Function() supply) => supply();
 
   @override
-  T orElseThrow(dynamic supplyError()) => throw supplyError();
+  T orElseThrow(dynamic Function() supplyError) => throw supplyError();
 
   @override
-  void ifPresent(void consume(T val), {void orElse()}) =>
+  void ifPresent(void Function(T) consume, {void Function() orElse}) =>
       orElse == null ? null : orElse();
 
   @override
   Set<T> toSet() => UnmodifiableSetView.empty();
 
   @override
-  List<T> toList() => new UnmodifiableListView([]);
+  List<T> toList() => UnmodifiableListView([]);
 
   @override
   int get hashCode => 0;

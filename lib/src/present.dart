@@ -12,7 +12,7 @@ class _Present<T> implements Optional<T> {
   bool get isPresent => true;
 
   @override
-  Optional<T> filter(bool predicate(T val)) {
+  Optional<T> filter(bool Function(T) predicate) {
     if (predicate(_value)) {
       return this;
     } else {
@@ -21,10 +21,10 @@ class _Present<T> implements Optional<T> {
   }
 
   @override
-  Optional<R> flatMap<R>(Optional<R> mapper(T val)) => mapper(_value);
+  Optional<R> flatMap<R>(Optional<R> Function(T) mapper) => mapper(_value);
 
   @override
-  Optional<R> map<R>(R mapper(T val)) => Optional<R>.ofNullable(mapper(_value));
+  Optional<R> map<R>(R Function(T) mapper) => Optional<R>.ofNullable(mapper(_value));
 
   @override
   bool contains(T val) => _value == val;
@@ -33,19 +33,19 @@ class _Present<T> implements Optional<T> {
   T orElse(T other) => _value;
 
   @override
-  T orElseGet(T supply()) => _value;
+  T orElseGet(T Function() supply) => _value;
 
   @override
-  T orElseThrow(dynamic supplyError()) => _value;
+  T orElseThrow(dynamic Function() supplyError) => _value;
 
   @override
-  void ifPresent(void consume(T val), {void orElse()}) => consume(_value);
+  void ifPresent(void Function(T) consume, {void Function() orElse}) => consume(_value);
 
   @override
-  Set<T> toSet() => new UnmodifiableSetView(Set.of([_value]));
+  Set<T> toSet() => UnmodifiableSetView({_value});
 
   @override
-  List<T> toList() => new UnmodifiableListView([_value]);
+  List<T> toList() => UnmodifiableListView([_value]);
 
   @override
   int get hashCode => _value.hashCode;

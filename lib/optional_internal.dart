@@ -46,15 +46,15 @@ abstract class Optional<T> {
   bool get isPresent;
 
   /// Returns an Optional with this Optional's value, if there is a value present and it matches the predicate.  Otherwise, returns an empty Optional.
-  Optional<T> filter(bool predicate(T val));
+  Optional<T> filter(bool Function(T) predicate);
 
   /// Returns an Optional provided by applying the mapper to this Optional's value, if present.  Otherwise, returns an empty Optional.
-  Optional<R> flatMap<R>(Optional<R> mapper(T val));
+  Optional<R> flatMap<R>(Optional<R> Function(T) mapper);
 
   /// Returns an Optional containing the result of applying the mapper to this Optional's value, if present.  Otherwise, returns an empty Optional.
   ///
   /// If the mapper returns a null value, returns an empty Optional.
-  Optional<R> map<R>(R mapper(T val));
+  Optional<R> map<R>(R Function(T) mapper);
 
   /// Whether the Optional contains the passed value.
   bool contains(T val);
@@ -63,13 +63,13 @@ abstract class Optional<T> {
   T orElse(T other);
 
   /// Returns this Optional's value, if present.  Otherwise, returns the result of calling supply().
-  T orElseGet(T supply());
+  T orElseGet(T Function() supply);
 
   /// Returns this Optional's value, if present.  Otherwise, throws the result of calling supplyError().
-  T orElseThrow(dynamic supplyError());
+  T orElseThrow(dynamic Function() supplyError);
 
   /// Invokes consume() with this Optional's value, if present.  Otherwise, if orElse is passed, invokes it, otherwise does nothing.
-  void ifPresent(void consume(T val), {void orElse()});
+  void ifPresent(void Function(T) consume, {void Function() orElse});
 
   /// Returns a Set containing the value if present.  Otherwise, returns an empty Set. This Set is unmodifiable.
   Set<T> toSet();
