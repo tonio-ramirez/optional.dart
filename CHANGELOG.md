@@ -1,4 +1,7 @@
 # Changelog
+### 4.0.1
+  * Fixed dartdoc generation
+
 ### 4.0.0
   * Added `toOptional` extension method
   * **Note that this requires the minimum SDK version to be 2.6.0**,
