@@ -240,10 +240,10 @@ void runMethodTests() {
     });
   });
   group('toString', () {
-    test('of value returns "Optional[value: \$value]', () {
+    test('of value returns "Optional[value: \$value]"', () {
       expect(Optional.of('hello').toString(), equals('Optional[value: hello]'));
     });
-    test('of empty returns "Optional[empty]', () {
+    test('of empty returns "Optional[empty]"', () {
       expect(Optional<int>.empty().toString(), equals('Optional[empty]'));
     });
   });
