@@ -7,6 +7,7 @@ void main() {
   mapExample();
   orElseExample();
   valueExample();
+  extensionExample();
 }
 
 void emptyExample() {
@@ -93,4 +94,10 @@ void valueExample() {
   } on NoValuePresentError catch (e) {
     print(e); // prints "Bad state: no value present"
   }
+}
+
+void extensionExample() {
+  final one = 1.toOptional;
+  print(one.value); // prints "1"
+  print(null.toOptional.isPresent); // prints "false"
 }

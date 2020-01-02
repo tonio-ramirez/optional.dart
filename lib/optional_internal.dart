@@ -5,6 +5,7 @@ import 'package:collection/collection.dart';
 part 'src/absent.dart';
 part 'src/present.dart';
 part 'src/novaluepresent.dart';
+part 'src/extension.dart';
 
 /// A constant, absent Optional.
 const Optional<dynamic> empty = _Absent<dynamic>();
