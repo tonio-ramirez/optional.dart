@@ -1,4 +1,9 @@
 # Changelog
+### 4.1.0
+  * `Optional` now implements `Iterable`
+    * The `toSet()` and `toList()` methods now return modifiable collections.
+    * The `toList()` method now accepts a `growable` optional named parameter, to comply with the `Iterable` interface.
+
 ### 4.0.1
   * Fixed dartdoc generation
 
