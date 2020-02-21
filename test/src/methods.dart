@@ -1,6 +1,6 @@
 part of optional_test;
 
-final Matcher throwsNoSuchElementError =
+final Matcher _throwsNoSuchElementError =
     throwsA(const TypeMatcher<NoValuePresentError>());
 
 class Consumer<T> {
@@ -48,7 +48,7 @@ void runMethodTests() {
   group('value', () {
     test('when empty throws', () {
       expect(() => const Optional<dynamic>.empty().value,
-          throwsNoSuchElementError);
+          _throwsNoSuchElementError);
     });
     test('when isPresent returns value', () {
       expect(Optional.of(1).value, equals(1));
@@ -180,10 +180,6 @@ void runMethodTests() {
     test('returns set with one value when present', () {
       expect(Optional.of(1).toSet().length, equals(1));
     });
-    test('returns unmodifiable set', () {
-      expect(() => const Optional<int>.empty().toSet().add(1),
-          throwsA(const TypeMatcher<UnsupportedError>()));
-    });
   });
 
   group('toList', () {
@@ -195,10 +191,6 @@ void runMethodTests() {
     });
     test('returns list with one value when present', () {
       expect(Optional.of(1).toList().length, equals(1));
-    });
-    test('returns unmodifiable list', () {
-      expect(() => const Optional<int>.empty().toList().add(1),
-          throwsA(const TypeMatcher<UnsupportedError>()));
     });
   });
 

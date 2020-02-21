@@ -13,7 +13,7 @@ const Optional<dynamic> empty = _Absent<dynamic>();
 /// A container object which may contain a non-null value.
 ///
 /// Offers several methods which depend on the presence or absence of a contained value.
-abstract class Optional<T> {
+abstract class Optional<T> implements Iterable<T> {
   /// Creates a new Optional with the given non-null value.
   ///
   /// Throws [ArgumentError] if value is null.
@@ -54,10 +54,8 @@ abstract class Optional<T> {
   /// Returns an Optional containing the result of applying the mapper to this Optional's value, if present.  Otherwise, returns an empty Optional.
   ///
   /// If the mapper returns a null value, returns an empty Optional.
+  @override
   Optional<R> map<R>(R Function(T) mapper);
-
-  /// Whether the Optional contains the passed value.
-  bool contains(T val);
 
   /// Returns this Optional's value, if present.  Otherwise, returns other.
   T orElse(T other);
@@ -71,12 +69,6 @@ abstract class Optional<T> {
   /// Invokes consume() with this Optional's value, if present.  Otherwise, if orElse is passed, invokes it, otherwise does nothing.
   void ifPresent(void Function(T) consume, {void Function() orElse});
 
-  /// Returns a Set containing the value if present.  Otherwise, returns an empty Set. This Set is unmodifiable.
-  Set<T> toSet();
-
-  /// Returns a List containing the value if present.  Otherwise, returns an empty List. This List is unmodifiable.
-  List<T> toList();
-
   /// The hashCode of this Optional's value, if present.  Otherwise, 0.
   @override
   int get hashCode;
@@ -85,5 +77,6 @@ abstract class Optional<T> {
   bool operator ==(Object other);
 
   /// Returns a view of this Optional as an Optional with an [R] value
+  @override
   Optional<R> cast<R>();
 }

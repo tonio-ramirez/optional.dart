@@ -1,12 +1,15 @@
 part of optional_internal;
 
-class _Present<T> implements Optional<T> {
+class _Present<T> extends Iterable<T> implements Optional<T> {
   const _Present(this._value);
 
   final T _value;
 
   @override
   T get value => _value;
+
+  @override
+  int get length => 1;
 
   @override
   bool get isPresent => true;
@@ -28,7 +31,7 @@ class _Present<T> implements Optional<T> {
       Optional<R>.ofNullable(mapper(_value));
 
   @override
-  bool contains(T val) => _value == val;
+  bool contains(Object val) => _value == val;
 
   @override
   T orElse(T other) => _value;
@@ -44,12 +47,6 @@ class _Present<T> implements Optional<T> {
       consume(_value);
 
   @override
-  Set<T> toSet() => UnmodifiableSetView({_value});
-
-  @override
-  List<T> toList() => UnmodifiableListView([_value]);
-
-  @override
   int get hashCode => _value.hashCode;
 
   @override
@@ -60,4 +57,13 @@ class _Present<T> implements Optional<T> {
 
   @override
   Optional<R> cast<R>() => _Present(value as R);
+
+  @override
+  bool get isEmpty => false;
+
+  @override
+  bool get isNotEmpty => true;
+
+  @override
+  Iterator<T> get iterator => UnmodifiableSetView({_value}).iterator;
 }

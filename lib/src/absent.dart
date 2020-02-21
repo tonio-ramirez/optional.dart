@@ -1,12 +1,15 @@
 part of optional_internal;
 
-class _Absent<T> implements Optional<T> {
+class _Absent<T> extends Iterable<T> implements Optional<T> {
   const _Absent();
 
   const _Absent._internal();
 
   @override
   T get value => throw NoValuePresentError();
+
+  @override
+  int get length => 0;
 
   @override
   bool get isPresent => false;
@@ -21,7 +24,7 @@ class _Absent<T> implements Optional<T> {
   Optional<R> map<R>(R Function(T) mapper) => empty.cast();
 
   @override
-  bool contains(T val) => false;
+  bool contains(Object val) => false;
 
   @override
   T orElse(T other) => other;
@@ -37,12 +40,6 @@ class _Absent<T> implements Optional<T> {
       orElse == null ? null : orElse();
 
   @override
-  Set<T> toSet() => UnmodifiableSetView.empty();
-
-  @override
-  List<T> toList() => UnmodifiableListView([]);
-
-  @override
   int get hashCode => 0;
 
   @override
@@ -53,4 +50,13 @@ class _Absent<T> implements Optional<T> {
 
   @override
   Optional<R> cast<R>() => _Absent<R>();
+
+  @override
+  bool get isEmpty => true;
+
+  @override
+  bool get isNotEmpty => false;
+
+  @override
+  Iterator<T> get iterator => UnmodifiableSetView<T>.empty().iterator;
 }
