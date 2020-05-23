@@ -1,4 +1,8 @@
 # Changelog
+### 4.2.0
+  * Added `async` support
+    * The `or*()` methods now accept and return `FutureOr`
+
 ### 4.1.0
   * `Optional` now implements `Iterable`
     * The `toSet()` and `toList()` methods now return modifiable collections.
