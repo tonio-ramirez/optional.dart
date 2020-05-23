@@ -33,7 +33,8 @@ class _Absent<T> extends Iterable<T> implements Optional<T> {
   FutureOr<T> orElseGet(FutureOr<T> Function() supply) => supply();
 
   @override
-  FutureOr<T> orElseThrow(dynamic Function() supplyError) => throw supplyError();
+  FutureOr<T> orElseThrow(dynamic Function() supplyError) =>
+      throw supplyError();
 
   @override
   void ifPresent(void Function(T) consume, {void Function() orElse}) =>
