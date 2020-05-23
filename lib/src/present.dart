@@ -34,13 +34,13 @@ class _Present<T> extends Iterable<T> implements Optional<T> {
   bool contains(Object val) => _value == val;
 
   @override
-  T orElse(T other) => _value;
+  FutureOr<T> orElse(FutureOr<T> other) => _value;
 
   @override
-  T orElseGet(T Function() supply) => _value;
+  FutureOr<T> orElseGet(FutureOr<T> Function() supply) => _value;
 
   @override
-  T orElseThrow(dynamic Function() supplyError) => _value;
+  FutureOr<T> orElseThrow(dynamic Function() supplyError) => _value;
 
   @override
   void ifPresent(void Function(T) consume, {void Function() orElse}) =>

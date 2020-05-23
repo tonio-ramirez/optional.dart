@@ -8,6 +8,7 @@ void main() {
   orElseExample();
   valueExample();
   extensionExample();
+  asyncExample();
 }
 
 void emptyExample() {
@@ -100,4 +101,20 @@ void extensionExample() {
   final one = 1.toOptional;
   print(one.value); // prints "1"
   print(null.toOptional.isPresent); // prints "false"
+}
+
+Future<Optional<int>> emptyFuture() {
+  return Future.value(Optional.empty());
+}
+
+Future<int> intFuture(int val) {
+  return Future.value(val);
+}
+
+void asyncExample() async {
+  final e = await emptyFuture();
+  var i = e.orElseGet(() => intFuture(1));
+  print(await i); // prints "1"
+  i = e.orElse(intFuture(2));
+  print(await i); // prints "2"
 }
