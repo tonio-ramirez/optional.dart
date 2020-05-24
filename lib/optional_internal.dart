@@ -59,13 +59,16 @@ abstract class Optional<T> implements Iterable<T> {
   Optional<R> map<R>(R Function(T) mapper);
 
   /// Returns this Optional's value, if present.  Otherwise, returns other.
-  FutureOr<T> orElse(FutureOr<T> other);
+  T orElse(T other);
 
   /// Returns this Optional's value, if present.  Otherwise, returns the result of calling supply().
-  FutureOr<T> orElseGet(FutureOr<T> Function() supply);
+  T orElseGet(T Function() supply);
+
+  /// Returns this Optional's value, if present.  Otherwise, returns the result of calling supply() asynchronously.
+  Future<T> orElseGetAsync(Future<T> Function() supply);
 
   /// Returns this Optional's value, if present.  Otherwise, throws the result of calling supplyError().
-  FutureOr<T> orElseThrow(dynamic Function() supplyError);
+  T orElseThrow(dynamic Function() supplyError);
 
   /// Invokes consume() with this Optional's value, if present.  Otherwise, if orElse is passed, invokes it, otherwise does nothing.
   void ifPresent(void Function(T) consume, {void Function() orElse});

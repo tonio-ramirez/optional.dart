@@ -113,8 +113,8 @@ Future<int> intFuture(int val) {
 
 void asyncExample() async {
   final e = await emptyFuture();
-  var i = e.orElseGet(() => intFuture(1));
-  print(await i); // prints "1"
-  i = e.orElse(intFuture(2));
+  var i = await e.orElseGetAsync(() => intFuture(1));
+  print(i); // prints "1"
+  i = e.orElse(await intFuture(2));
   print(await i); // prints "2"
 }

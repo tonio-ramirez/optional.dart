@@ -37,7 +37,7 @@ class ChatViewLoader {
 
   Future<ChatView> loadOrCreateChat(String id) async {
     final maybeChat = await repository.loadChat(id);
-    final chat = await maybeChat.orElseGet(() => _createChat(id));
+    final chat = await maybeChat.orElseGetAsync(() => _createChat(id));
     return chatViewFactory.createView(chat);
   }
 }
@@ -62,7 +62,7 @@ class ChatView {
 }
 
 class ChatViewFactory {
-  Future<ChatView> createView(FutureOr<Chat> chat) async {
-    return ChatView((await chat).fromRepo);
+  Future<ChatView> createView(Chat chat) async {
+    return ChatView(chat.fromRepo);
   }
 }
