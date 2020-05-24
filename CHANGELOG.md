@@ -1,4 +1,8 @@
 # Changelog
+### 5.0.0
+  * Refactored `async` support to `orElseGetAsync()` to avoid bogus dartanalyzer errors
+  * **(Breaking change)** `or*()` methods no longer support `async`.  Instead, use `orElseGetAsync()`
+ 
 ### 4.2.0
   * Added `async` support
     * The `or*()` methods now accept and return `FutureOr`
