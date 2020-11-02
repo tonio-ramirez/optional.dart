@@ -71,4 +71,4 @@ void main() {
 }
 ```
 
-[javaOptional]: http://docs.oracle.com/javase/8/docs/api/java/util/Optional.html
+[javaOptional]: https://docs.oracle.com/javase/8/docs/api/java/util/Optional.html
