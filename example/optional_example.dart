@@ -100,7 +100,6 @@ void valueExample() {
 void extensionExample() {
   final one = 1.toOptional;
   print(one.value); // prints "1"
-  print(null.toOptional.isPresent); // prints "false"
 }
 
 Future<Optional<int>> emptyFuture() {

@@ -1,8 +1,8 @@
 part of optional_test;
 
 void runAsyncTests() {
-  ChatViewLoader bloc;
-  ChatRepository repository;
+  ChatRepository repository = ChatRepository();
+  ChatViewLoader bloc = ChatViewLoader(repository, ChatViewFactory());
 
   setUp(() {
     repository = ChatRepository();

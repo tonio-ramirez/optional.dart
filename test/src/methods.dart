@@ -4,7 +4,7 @@ final Matcher _throwsNoSuchElementError =
     throwsA(const TypeMatcher<NoValuePresentError>());
 
 class Consumer<T> {
-  void call(T value) {}
+  void call(T? value) {}
 }
 
 class Method {

@@ -31,7 +31,7 @@ class _Present<T> extends Iterable<T> implements Optional<T> {
       Optional<R>.ofNullable(mapper(_value));
 
   @override
-  bool contains(Object val) => _value == val;
+  bool contains(Object? val) => _value == val;
 
   @override
   T orElse(T other) => _value;
@@ -43,10 +43,10 @@ class _Present<T> extends Iterable<T> implements Optional<T> {
   Future<T> orElseGetAsync(Future<T> Function() supply) async => _value;
 
   @override
-  T orElseThrow(dynamic Function() supplyError) => _value;
+  T orElseThrow(Object Function() supplyError) => _value;
 
   @override
-  void ifPresent(void Function(T) consume, {void Function() orElse}) =>
+  void ifPresent(void Function(T) consume, {void Function()? orElse}) =>
       consume(_value);
 
   @override

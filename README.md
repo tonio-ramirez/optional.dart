@@ -1,5 +1,6 @@
 ![](https://github.com/tonio-ramirez/optional.dart/workflows/tests/badge.svg?branch=master)
-[![Coverage Status](https://coveralls.io/repos/github/tonio-ramirez/optional.dart/badge.svg?branch=master)](https://coveralls.io/github/tonio-ramirez/optional.dart?branch=master)
+
+[comment]: <> ([![Coverage Status]&#40;https://coveralls.io/repos/github/tonio-ramirez/optional.dart/badge.svg?branch=master&#41;]&#40;https://coveralls.io/github/tonio-ramirez/optional.dart?branch=master&#41;)
 
 Optional.dart
 =============
@@ -13,7 +14,7 @@ For example, when applying a set of operations to a value, any of which might re
 you can get rid of the `null` checks by using `Optional.map()`:
 
 ```dart
-String getString() {
+String? getString() {
   // ..
   if (condition) {
     return null;
@@ -22,7 +23,7 @@ String getString() {
   }
 }
 
-int calculateSomething(String str) {
+int? calculateSomething(String str) {
   // ...
   if (someCondition) {
     return null;
@@ -31,7 +32,7 @@ int calculateSomething(String str) {
   }
 } 
 
-double calculateSomethingElse(int val) {
+double? calculateSomethingElse(int val) {
   // ...
   if (anotherCondition) {
     return null;
@@ -44,9 +45,9 @@ void main() {
   
   // before
   
-  String str;
-  int i;
-  double d;
+  String? str;
+  int? i;
+  double? d;
   
   str = getString();
   

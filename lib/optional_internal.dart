@@ -27,7 +27,7 @@ abstract class Optional<T> implements Iterable<T> {
   }
 
   /// Creates a new Optional with the given value, if non-null.  Otherwise, returns an empty Optional.
-  factory Optional.ofNullable(T value) {
+  factory Optional.ofNullable(T? value) {
     if (value == null) {
       return empty.cast();
     } else {
@@ -68,7 +68,7 @@ abstract class Optional<T> implements Iterable<T> {
   Future<T> orElseGetAsync(Future<T> Function() supply);
 
   /// Returns this Optional's value, if present.  Otherwise, throws the result of calling supplyError().
-  T orElseThrow(dynamic Function() supplyError);
+  T orElseThrow(Object Function() supplyError);
 
   /// Invokes consume() with this Optional's value, if present.  Otherwise, if orElse is passed, invokes it, otherwise does nothing.
   void ifPresent(void Function(T) consume, {void Function() orElse});

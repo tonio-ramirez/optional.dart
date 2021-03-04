@@ -24,7 +24,7 @@ class _Absent<T> extends Iterable<T> implements Optional<T> {
   Optional<R> map<R>(R Function(T) mapper) => empty.cast();
 
   @override
-  bool contains(Object val) => false;
+  bool contains(Object? val) => false;
 
   @override
   T orElse(T other) => other;
@@ -36,10 +36,10 @@ class _Absent<T> extends Iterable<T> implements Optional<T> {
   Future<T> orElseGetAsync(Future<T> Function() supply) => supply();
 
   @override
-  T orElseThrow(dynamic Function() supplyError) => throw supplyError();
+  T orElseThrow(Object Function() supplyError) => throw supplyError();
 
   @override
-  void ifPresent(void Function(T) consume, {void Function() orElse}) =>
+  void ifPresent(void Function(T) consume, {void Function()? orElse}) =>
       orElse == null ? null : orElse();
 
   @override
