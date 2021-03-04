@@ -1,4 +1,8 @@
 # Changelog
+### 6.0.0-nullsafety.0
+  * Added null-safety support
+  * **(Breaking change)** Removed extension methods on `null`, since they're not compatible with null-safety.
+
 ### 5.0.0
   * Refactored `async` support to `orElseGetAsync()` to avoid bogus dartanalyzer errors
   * **(Breaking change)** `or*()` methods no longer support `async`.  Instead, use `orElseGetAsync()`
