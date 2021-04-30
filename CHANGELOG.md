@@ -1,4 +1,7 @@
 # Changelog
+### 6.0.0-nullsafety.1
+  * Added `or` methods returning nullable types.
+
 ### 6.0.0-nullsafety.0
   * Added null-safety support
   * **(Breaking change)** Removed extension methods on `null`, since they're not compatible with null-safety.
