@@ -45,7 +45,8 @@ class _Absent<T> extends Iterable<T> implements Optional<T> {
   Future<T> orElseGetAsync(Future<T> Function() supply) => supply();
 
   @override
-  Future<T?> orElseGetNullableAsync(Future<T?> Function() supply) async => supply();
+  Future<T?> orElseGetNullableAsync(Future<T?> Function() supply) async =>
+      supply();
 
   @override
   T orElseThrow(Object Function() supplyError) => throw supplyError();

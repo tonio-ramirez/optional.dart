@@ -52,7 +52,8 @@ class _Present<T> extends Iterable<T> implements Optional<T> {
   Future<T> orElseGetAsync(Future<T> Function() supply) async => _value;
 
   @override
-  Future<T?> orElseGetNullableAsync(Future<T?> Function() supply) async => _value;
+  Future<T?> orElseGetNullableAsync(Future<T?> Function() supply) async =>
+      _value;
 
   @override
   T orElseThrow(Object Function() supplyError) => _value;
