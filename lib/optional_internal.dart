@@ -64,7 +64,7 @@ abstract class Optional<T> implements Iterable<T> {
   /// Returns this Optional's value, if present, as nullable. Otherwise, returns other.
   T? orElseNullable(T? other);
 
-  /// Returns this Optional's value, if preset, as nullable.  Otherwise, returns null.
+  /// Returns this Optional's value, if present, as nullable.  Otherwise, returns null.
   T? get orElseNull;
 
   /// Returns this Optional's value, if present.  Otherwise, returns the result of calling supply().
