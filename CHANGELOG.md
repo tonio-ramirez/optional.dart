@@ -1,4 +1,7 @@
 # Changelog
+### 6.0.0-nullsafety.2
+  * Format files
+
 ### 6.0.0-nullsafety.1
   * Added `or` methods returning nullable types.
 
