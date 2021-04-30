@@ -118,11 +118,35 @@ void runMethodTests() {
     test('orElse(val) returns value when present', () {
       expect(Optional.of(1).orElse(2), equals(1));
     });
+    test('orElseNullable(val) returns val when empty', () {
+      expect(const Optional<int>.empty().orElseNullable(2), equals(2));
+    });
+    test('orElseNullable(val) returns value when present', () {
+      expect(Optional.of(1).orElseNullable(2), equals(1));
+    });
+    test('orElseNullable(null) returns null when empty', () {
+      expect(const Optional<int>.empty().orElseNullable(null), isNull);
+    });
+    test('orElseNull returns null when empty', () {
+      expect(Optional<int>.empty().orElseNull, isNull);
+    });
+    test('orElseNull returns value when present', () {
+      expect(Optional.of(1).orElseNull, equals(1));
+    });
     test('orElseGet(f) returns f() when empty', () {
       expect(const Optional<int>.empty().orElseGet(() => 2), equals(2));
     });
     test('orElseGet(f) returns value when present', () {
       expect(Optional.of(1).orElseGet(() => 2), equals(1));
+    });
+    test('orElseGetNullable(f) returns f() when empty', () {
+      expect(const Optional<int>.empty().orElseGetNullable(() => 2), equals(2));
+    });
+    test('orElseGetNullable(f) returns value when present', () {
+      expect(Optional.of(1).orElseGetNullable(() => 2), equals(1));
+    });
+    test('orElseGetNullable(f) returns null when empty and f() == null', () {
+      expect(const Optional<int>.empty().orElseGetNullable(() => null), isNull);
     });
     test('orElseThrow(f) throws f() when empty', () {
       expect(() => const Optional<int>.empty().orElseThrow(() => 'exception'),
@@ -133,6 +157,26 @@ void runMethodTests() {
     });
     test('orElse(val) of ofNullable(null) returns value', () {
       expect(Optional<int>.ofNullable(null).orElse(1), equals(1));
+    });
+    test('orElseGetAsync(f) returns value when present', () async {
+      expect(await Optional.of(1).orElseGetAsync(() async => 2), equals(1));
+    });
+    test('orElseGetAsync(f) returns f() when empty', () async {
+      expect(
+          await Optional<int>.empty().orElseGetAsync(() async => 2), equals(2));
+    });
+    test('orElseGetNullableAsync(f) returns value when present', () async {
+      expect(await Optional.of(1).orElseGetNullableAsync(() async => 2),
+          equals(1));
+    });
+    test('orElseGetNullableAsync(f) returns f() when empty', () {
+      expect(Optional<int>.empty().orElseGetNullableAsync(() async => 2),
+          completion(equals(2)));
+    });
+    test('orElseGetNullableAsync(f) returns null when empty and f() == null',
+        () {
+      expect(Optional<int>.empty().orElseGetNullableAsync(() async => null),
+          completion(isNull));
     });
   });
   group('ifPresent', () {

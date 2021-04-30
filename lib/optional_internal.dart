@@ -61,11 +61,23 @@ abstract class Optional<T> implements Iterable<T> {
   /// Returns this Optional's value, if present.  Otherwise, returns other.
   T orElse(T other);
 
+  /// Returns this Optional's value, if present, as nullable. Otherwise, returns other.
+  T? orElseNullable(T? other);
+
+  /// Returns this Optional's value, if preset, as nullable.  Otherwise, returns null.
+  T? get orElseNull;
+
   /// Returns this Optional's value, if present.  Otherwise, returns the result of calling supply().
   T orElseGet(T Function() supply);
 
+  /// Returns this Optional's value, if present, as nullable.  Otherwise, returns the result of calling supply().
+  T? orElseGetNullable(T? Function() supply);
+
   /// Returns this Optional's value, if present.  Otherwise, returns the result of calling supply() asynchronously.
   Future<T> orElseGetAsync(Future<T> Function() supply);
+
+  /// Returns this Optional's value, if present, as nullable.  Otherwise, returns the result of calling supply() asynchronously.
+  Future<T?> orElseGetNullableAsync(Future<T?> Function() supply);
 
   /// Returns this Optional's value, if present.  Otherwise, throws the result of calling supplyError().
   T orElseThrow(Object Function() supplyError);

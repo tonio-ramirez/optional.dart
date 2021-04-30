@@ -30,10 +30,22 @@ class _Absent<T> extends Iterable<T> implements Optional<T> {
   T orElse(T other) => other;
 
   @override
+  T? orElseNullable(T? other) => other;
+
+  @override
+  T? get orElseNull => null;
+
+  @override
   T orElseGet(T Function() supply) => supply();
 
   @override
+  T? orElseGetNullable(T? Function() supply) => supply();
+
+  @override
   Future<T> orElseGetAsync(Future<T> Function() supply) => supply();
+
+  @override
+  Future<T?> orElseGetNullableAsync(Future<T?> Function() supply) async => supply();
 
   @override
   T orElseThrow(Object Function() supplyError) => throw supplyError();

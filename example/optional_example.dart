@@ -9,6 +9,7 @@ void main() {
   valueExample();
   extensionExample();
   asyncExample();
+  nullSafeNullableExample();
 }
 
 void emptyExample() {
@@ -115,5 +116,18 @@ void asyncExample() async {
   var i = await e.orElseGetAsync(() => intFuture(1));
   print(i); // prints "1"
   i = e.orElse(await intFuture(2));
-  print(await i); // prints "2"
+  print(i); // prints "2"
+}
+
+bool isNullable<T>(T val) => null is T;
+
+void nullSafeNullableExample() {
+  print(isNullable(Optional<int>.empty().orElseNull)); // prints "true"
+  var i = Optional.of(1).orElseNullable(2);
+  print(i); // prints "1"
+  print(isNullable(i)); // prints "true"
+  i = Optional.of(1).orElseGet(() => 2);
+  print(isNullable(i)); // prints "false"
+  i = Optional.of(1).orElseGetNullable(() => 2);
+  print(isNullable(i)); // prints "true"
 }
