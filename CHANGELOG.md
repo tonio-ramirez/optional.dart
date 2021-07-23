@@ -1,4 +1,7 @@
 # Changelog
+### 6.0.0
+  * Removed `test_coverage` dependency.
+
 ### 6.0.0-nullsafety.2
   * Format files
 
