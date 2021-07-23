@@ -1,6 +1,5 @@
 ![](https://github.com/tonio-ramirez/optional.dart/workflows/tests/badge.svg?branch=master)
-
-[comment]: <> ([![Coverage Status]&#40;https://coveralls.io/repos/github/tonio-ramirez/optional.dart/badge.svg?branch=master&#41;]&#40;https://coveralls.io/github/tonio-ramirez/optional.dart?branch=master&#41;)
+[![Coverage Status](https://coveralls.io/repos/github/tonio-ramirez/optional.dart/badge.svg?branch=master)](https://coveralls.io/github/tonio-ramirez/optional.dart?branch=master)
 
 Optional.dart
 =============

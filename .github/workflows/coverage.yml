@@ -15,7 +15,9 @@ jobs:
     - name: Install dependencies
       run: pub get
     - name: Run test coverage
-      run: pub run test_coverage
+      run: |
+        dart test --coverage=coverage
+        pub run coverage:format_coverage --lcov --in=coverage --out=coverage/lcov.info --packages=.packages --report-on=lib
     - name: Coveralls
       uses: coverallsapp/github-action@master
       with:
