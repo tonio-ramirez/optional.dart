@@ -7,7 +7,6 @@ extension OptionalExtension<T extends Object> on T {
 
 /// Extensions that apply to all iterables.
 extension OptionalIterableExtension<T> on Iterable<T> {
-
   /// The first element satisfying [test], or `Optional.empty()` if there are none.
   Optional<T> firstWhereOptional(bool Function(T element) test) {
     for (var element in this) {
@@ -19,7 +18,8 @@ extension OptionalIterableExtension<T> on Iterable<T> {
   /// The first element whose value and index satisfies [test].
   ///
   /// Returns `Optional.empty()` if there are no element and index satisfying [test].
-  Optional<T> firstWhereIndexedOptional(bool Function(int index, T element) test) {
+  Optional<T> firstWhereIndexedOptional(
+      bool Function(int index, T element) test) {
     var index = 0;
     for (var element in this) {
       if (test(index++, element)) return Optional.of(element);
@@ -46,7 +46,8 @@ extension OptionalIterableExtension<T> on Iterable<T> {
   /// The last element whose index and value satisfies [test].
   ///
   /// Returns `Optional.empty()` if no element and index satisfies [test].
-  Optional<T> lastWhereIndexedOptional(bool Function(int index, T element) test) {
+  Optional<T> lastWhereIndexedOptional(
+      bool Function(int index, T element) test) {
     T? result;
     var index = 0;
     for (var element in this) {
@@ -89,7 +90,8 @@ extension OptionalIterableExtension<T> on Iterable<T> {
   ///
   /// Returns `Optional.empty()` if there are either none
   /// or more than one element and index satisfying [test].
-  Optional<T> singleWhereIndexedOptional(bool Function(int index, T element) test) {
+  Optional<T> singleWhereIndexedOptional(
+      bool Function(int index, T element) test) {
     T? result;
     var found = false;
     var index = 0;
@@ -120,5 +122,4 @@ extension OptionalIterableExtension<T> on Iterable<T> {
     }
     return Optional.empty();
   }
-
 }

@@ -134,7 +134,7 @@ void nullSafeNullableExample() {
 }
 
 void collectionsExample() {
-  final data = <int>[1,2,2,2,3];
+  final data = <int>[1, 2, 2, 2, 3];
   print(data.firstOptional.isPresent); // prints "true"
   print(data.firstWhereOptional((v) => v == 3).isPresent); // prints "true"
   print(data.singleWhereOptional((v) => v == 3).isEmpty); // prints "true"
