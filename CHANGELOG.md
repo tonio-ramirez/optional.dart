@@ -1,4 +1,7 @@
 # Changelog
+### 6.1.0
+  * Added iterable extensions
+
 ### 6.0.0
   * Removed `test_coverage` dependency.
 
