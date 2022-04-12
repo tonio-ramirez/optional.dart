@@ -9,6 +9,15 @@ void runExtensionTests() {
       expect(1.toOptional, equals(Optional.of(1)));
     });
   });
+  group('iterable.emptyAsOptional', () {
+    test('iterable.emptyAsOptional is present', () {
+      expect(
+          <int>[1, 2, 3].emptyAsOptional.value, [1, 2, 3]);
+    });
+    test('iterable.emptyAsOptional is empty', () {
+      expect(<int>[].emptyAsOptional.isEmpty, isTrue);
+    });
+  });
   group('iterable.firstWhereOptional', () {
     test('iterable.firstWhereOptional is present', () {
       expect(

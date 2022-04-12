@@ -5,6 +5,14 @@ extension OptionalExtension<T extends Object> on T {
   Optional<T> get toOptional => Optional.of(this);
 }
 
+extension OptionalWrappedIterableExtension<S, T extends Iterable<S>> on T {
+  /// Iterable wrapped in Optional, or `Optional.empty()` if the Iterable is empty.
+  Optional<T> get emptyAsOptional {
+    if (isEmpty) return Optional.empty();
+    return Optional.of(this);
+  }
+}
+
 /// Extensions that apply to all iterables.
 extension OptionalIterableExtension<T> on Iterable<T> {
   /// The first element satisfying [test], or `Optional.empty()` if there are none.

@@ -6,5 +6,6 @@ export 'optional_internal.dart'
         Optional,
         OptionalExtension,
         OptionalIterableExtension,
+        OptionalWrappedIterableExtension,
         NoValuePresentError,
         empty;
